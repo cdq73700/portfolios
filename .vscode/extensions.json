@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "adam-bender.commit-message-editor",
+        "ms-azuretools.vscode-docker",
+        "mhutchie.git-graph",
+        "donjayamanne.githistory"
+    ]
+}

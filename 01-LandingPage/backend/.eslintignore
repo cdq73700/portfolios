@@ -1,0 +1,9 @@
+# dependencies
+node_modules/*
+
+# production
+dist/*
+
+# misc
+.eslintrc.js
+webpack.config.js

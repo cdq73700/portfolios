@@ -19,7 +19,7 @@ export default function SideMenu({
       ></div>
       <div className={`w-64 absolute py-0 ${position}`}>
         <div className={Body}>
-          <nav className={'grid h-screen'}>
+          <nav className={'h-screen flex-row'}>
             <div className={Header}>HEADER</div>
             <div className={Container}>{children}</div>
           </nav>

@@ -9,6 +9,7 @@
   --background-rgba: 255, 255, 255, 0.25;
   --background-side-menu-header-rgb: 209, 213, 219;
   --background-side-menu-body-rgb: 243, 244, 246;
+  --button-rgb: 37, 99, 235;
 }
 
 :root.dark {
@@ -18,6 +19,7 @@
   --background-rgba: 0, 0, 0, 0.25;
   --background-side-menu-header-rgb: 17, 24, 39;
   --background-side-menu-body-rgb: 31, 41, 55;
+  --button-rgb: 255, 255, 255;
 }
 
 header {
@@ -49,6 +51,7 @@ footer {
 }
 
 button {
+  color: rgb(var(--button-rgb));
   border-width: 2px;
   border-style: solid;
   border-radius: 0.25rem;

@@ -1,11 +1,10 @@
-const RightMenu = () => {
-  const items = Array.from({ length: 50 }).map((_, index) => `item${index + 1}`)
+import ModeButton from './ModeButton'
 
+const RightMenu = () => {
   return (
     <>
-      {items.map((item, index) => (
-        <div key={index}>{item}</div>
-      ))}
+      <span>Mode</span>
+      <ModeButton></ModeButton>
     </>
   )
 }

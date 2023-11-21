@@ -1,9 +1,6 @@
-import DarkModeButton from '@/components/DarkModeButton'
-
 export default function Home() {
   return (
     <>
-      <DarkModeButton></DarkModeButton>
       <div>
         <h1>ネコ</h1>
         <p>

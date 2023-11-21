@@ -4,16 +4,30 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 209, 213, 219;
+  --background-rgba: 255, 255, 255, 0.25;
+  --background-side-menu-header-rgb: 209, 213, 219;
+  --background-side-menu-body-rgb: 243, 244, 246;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+:root.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 17, 24, 39;
+  --background-end-rgb: 0, 0, 0;
+  --background-rgba: 0, 0, 0, 0.25;
+  --background-side-menu-header-rgb: 17, 24, 39;
+  --background-side-menu-body-rgb: 31, 41, 55;
+}
+
+header {
+  width: 100%;
+  padding: 0.75rem;
+  align-content: center;
+  position: fixed;
+  color: rgb(var(--foreground-rgb));
+  background-color: rgba(var(--background-rgba));
+  backdrop-filter: blur(3px);
 }
 
 body {
@@ -24,4 +38,19 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+footer {
+  width: 100%;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  color: rgb(var(--foreground-rgb));
+  background-color: rgb(var(--background-end-rgb));
+}
+
+button {
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 0.25rem;
+  border-color: rgba(37, 99, 235, 1);
 }

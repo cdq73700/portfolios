@@ -1,5 +1,5 @@
 'use client'
-import { Menu, Search, Settings } from '@mui/icons-material'
+import { Menu, Settings } from '@mui/icons-material'
 import SideMenu from './SideMenu'
 import LeftMenu from './LeftMenu'
 import RightMenu from './RightMenu'
@@ -39,9 +39,6 @@ const Header = () => {
           </Button>
           <Stack>HEADER</Stack>
           <Box flexGrow={1}></Box>
-          <Button>
-            <Search></Search>
-          </Button>
           <Button onClick={() => toggleMenuCallback('right')}>
             <Settings></Settings>
           </Button>

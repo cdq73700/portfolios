@@ -2,41 +2,53 @@
 import { Menu, Search, Settings } from '@mui/icons-material'
 import SideMenu from './SideMenu'
 import LeftMenu from './LeftMenu'
-import { useState } from 'react'
 import RightMenu from './RightMenu'
+import { Box, Button, Stack } from '@mui/material'
+import { useDispatch } from 'react-redux'
+import { toggleMenu } from '@/reducers/sideMenu.reducer'
+import { useCallback, useState } from 'react'
+import { Anchor } from '@/types/sideMenu.type'
 
 const Header = () => {
-  const [isLeftMenuOpen, setIsLeftMenuOpen] = useState(false)
-  const [isRightMenuOpen, setIsRightMenuOpen] = useState(false)
+  const [node, setNode] = useState<JSX.Element>()
+  const dispatch = useDispatch()
+
+  const toggleMenuCallback = useCallback(
+    (anchor: Anchor) => {
+      dispatch(toggleMenu(anchor))
+      switch (anchor) {
+        case 'left':
+          setNode(LeftMenu)
+          break
+        case 'right':
+          setNode(RightMenu)
+          break
+        default:
+          break
+      }
+    },
+    [dispatch]
+  )
 
   return (
     <>
       <header>
-        <div className="flex items-center space-x-4">
-          <button onClick={() => setIsLeftMenuOpen(!isLeftMenuOpen)}>
-            <Menu className="m-1"></Menu>
-          </button>
-          <div>HEADER</div>
-          <div className="flex-grow"></div>
-          <button>
-            <Search className="m-1"></Search>
-          </button>
-          <button onClick={() => setIsRightMenuOpen(!isRightMenuOpen)}>
-            <Settings className="m-1"></Settings>
-          </button>
-        </div>
+        <Box display={'flex'} alignItems={'center'}>
+          <Button onClick={() => toggleMenuCallback('left')}>
+            <Menu></Menu>
+          </Button>
+          <Stack>HEADER</Stack>
+          <Box flexGrow={1}></Box>
+          <Button>
+            <Search></Search>
+          </Button>
+          <Button onClick={() => toggleMenuCallback('right')}>
+            <Settings></Settings>
+          </Button>
+        </Box>
       </header>
 
-      <div hidden={!isLeftMenuOpen}>
-        <SideMenu position="left-0" setIsOpen={setIsLeftMenuOpen}>
-          <LeftMenu></LeftMenu>
-        </SideMenu>
-      </div>
-      <div hidden={!isRightMenuOpen}>
-        <SideMenu position="right-0" setIsOpen={setIsRightMenuOpen}>
-          <RightMenu></RightMenu>
-        </SideMenu>
-      </div>
+      <SideMenu>{node}</SideMenu>
     </>
   )
 }

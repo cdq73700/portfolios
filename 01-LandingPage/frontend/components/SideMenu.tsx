@@ -1,30 +1,34 @@
+'use client'
+import { toggleMenu } from '@/reducers/sideMenu.reducer'
+import { Box, Stack, SwipeableDrawer } from '@mui/material'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from '@/styles/components/SideMenu.styles.module.css'
+import { Anchor } from '@/types/sideMenu.type'
 
-export default function SideMenu({
-  position,
-  setIsOpen,
-  children,
-}: {
-  position: string
-  setIsOpen: Function
-  children: React.ReactNode
-}) {
+const SideMenu = ({ children }: { children: React.ReactNode }) => {
+  const { anchor, isOpen }: { anchor: Anchor; isOpen: boolean } = useSelector(
+    ({ sideMenu }) => sideMenu
+  )
+  const dispach = useDispatch()
   const { Header, Body, Container } = styles
 
   return (
     <>
-      <div
-        className={'h-screen fixed inset-0 bg-black bg-opacity-50'}
-        onClick={() => setIsOpen(false)}
-      ></div>
-      <div className={`w-64 absolute py-0 ${position}`}>
-        <div className={Body}>
-          <nav className={'h-screen flex-row'}>
-            <div className={Header}>HEADER</div>
-            <div className={Container}>{children}</div>
-          </nav>
-        </div>
-      </div>
+      <SwipeableDrawer
+        anchor={anchor}
+        open={isOpen}
+        onClose={() => dispach(toggleMenu(anchor))}
+        onOpen={() => dispach(toggleMenu(anchor))}
+      >
+        <Box className={Header}>HEADER</Box>
+        <Stack className={Body}>
+          <Box>
+            <Box className={Container}>{children}</Box>
+          </Box>
+        </Stack>
+      </SwipeableDrawer>
     </>
   )
 }
+
+export default SideMenu

@@ -1,8 +1,12 @@
+import { Box } from '@mui/material'
+
 const Footer = () => {
   return (
     <>
       <footer>
-        <div className="flex justify-center">FOOTER</div>
+        <Box display={'flex'} justifyContent={'center'}>
+          FOOTER
+        </Box>
       </footer>
     </>
   )

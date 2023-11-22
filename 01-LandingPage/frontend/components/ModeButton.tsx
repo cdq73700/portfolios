@@ -1,41 +1,43 @@
 'use client'
 
+import { setTheme } from '@/reducers/window.reducer'
 import { DarkMode, LightMode } from '@mui/icons-material'
-import { useEffect, useState } from 'react'
+import { Box, Button, ButtonGroup } from '@mui/material'
+import { useCallback } from 'react'
+import { useDispatch } from 'react-redux'
+import { Theme } from '@/types/window.type'
 
 const ModeButton = () => {
-  const [isTheme, setIsTheme] = useState(true)
+  const dispatch = useDispatch()
 
-  useEffect(() => {
-    if (isTheme) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-  }, [isTheme])
+  const changeThemeCallback = useCallback(
+    (theme: Theme) => {
+      switch (theme) {
+        case 'dark':
+          dispatch(setTheme('dark'))
+          document.documentElement.classList.add('dark')
+          break
+        default:
+          dispatch(setTheme('right'))
+          document.documentElement.classList.remove('dark')
+          break
+      }
+    },
+    [dispatch]
+  )
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-2">
-        <button
-          className="flex p-2 justify-center"
-          onClick={() => setIsTheme(false)}
-        >
-          <div className="px-1">
-            <LightMode></LightMode>
-          </div>
-          <span className="px-1">Light</span>
-        </button>
-        <button
-          className="flex p-2 justify-center"
-          onClick={() => setIsTheme(true)}
-        >
-          <div className="px-1">
-            <DarkMode></DarkMode>
-          </div>
-          <span className="px-1">Dark</span>
-        </button>
-      </div>
+      <ButtonGroup>
+        <Button onClick={() => changeThemeCallback('right')}>
+          <LightMode></LightMode>
+          <Box padding={'0.25rem'}>Light</Box>
+        </Button>
+        <Button onClick={() => changeThemeCallback('dark')}>
+          <DarkMode></DarkMode>
+          <Box padding={'0.25rem'}>Dark</Box>
+        </Button>
+      </ButtonGroup>
     </>
   )
 }

@@ -1,14 +1,9 @@
 import type { Metadata } from 'next'
-import { Space_Grotesk } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-
-const space_grotesk = Space_Grotesk({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-space-grotesk',
-})
+import { Box } from '@mui/material'
+import ReduxProvider from './ReduxProvider'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -21,13 +16,20 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${space_grotesk.variable} scroll-smooth dark`}>
+    <html lang="en" className={'dark'}>
       <body>
-        <div className="flex min-h-screen flex-col justify-between">
+        <ReduxProvider>
           <Header></Header>
-          <main className="mt-10 p-10 mb-auto">{children}</main>
-        </div>
-        <Footer></Footer>
+          <Box
+            display={'flex'}
+            minHeight={'100vh'}
+            flexDirection={'column'}
+            justifyContent={'space-between'}
+          >
+            <main>{children}</main>
+          </Box>
+          <Footer></Footer>
+        </ReduxProvider>
       </body>
     </html>
   )

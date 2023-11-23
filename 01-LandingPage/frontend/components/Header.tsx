@@ -3,14 +3,14 @@ import { Menu, Settings } from '@mui/icons-material'
 import SideMenu from './SideMenu'
 import LeftMenu from './LeftMenu'
 import RightMenu from './RightMenu'
-import { Box, Button, Stack } from '@mui/material'
+import { Box, Button, Link, Stack } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { toggleMenu } from '@/reducers/sideMenu.reducer'
 import { useCallback, useState } from 'react'
 import { Anchor } from '@/types/sideMenu.type'
 
 const Header = () => {
-  const [node, setNode] = useState<JSX.Element>()
+  const [componentId, setComponentId] = useState<string | null>(null)
   const dispatch = useDispatch()
 
   const toggleMenuCallback = useCallback(
@@ -18,12 +18,13 @@ const Header = () => {
       dispatch(toggleMenu(anchor))
       switch (anchor) {
         case 'left':
-          setNode(LeftMenu)
+          setComponentId(anchor)
           break
         case 'right':
-          setNode(RightMenu)
+          setComponentId(anchor)
           break
         default:
+          setComponentId(null)
           break
       }
     },
@@ -37,7 +38,9 @@ const Header = () => {
           <Button onClick={() => toggleMenuCallback('left')}>
             <Menu></Menu>
           </Button>
-          <Stack>HEADER</Stack>
+          <Stack>
+            <Link href="/">HEADER</Link>
+          </Stack>
           <Box flexGrow={1}></Box>
           <Button onClick={() => toggleMenuCallback('right')}>
             <Settings></Settings>
@@ -45,7 +48,10 @@ const Header = () => {
         </Box>
       </header>
 
-      <SideMenu>{node}</SideMenu>
+      <SideMenu>
+        {componentId == 'left' && <LeftMenu></LeftMenu>}
+        {componentId == 'right' && <RightMenu></RightMenu>}
+      </SideMenu>
     </>
   )
 }

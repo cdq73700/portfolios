@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState: WindowInitial = {
   theme: 'dark',
+  language: 'ja',
 }
 
 const windowSlice = createSlice({
@@ -12,8 +13,11 @@ const windowSlice = createSlice({
     setTheme(state, action) {
       state.theme = action.payload
     },
+    setLanguage(state, action) {
+      state.language = action.payload
+    },
   },
 })
 
-export const { setTheme } = windowSlice.actions
+export const { setTheme, setLanguage } = windowSlice.actions
 export default windowSlice.reducer

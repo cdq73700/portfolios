@@ -1,5 +1,3 @@
-'use client'
-
 import { setTheme } from '@/reducers/window.reducer'
 import { DarkMode, LightMode } from '@mui/icons-material'
 import { Box, Button, ButtonGroup } from '@mui/material'

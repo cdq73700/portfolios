@@ -54,3 +54,18 @@ footer {
   color: rgb(var(--foreground-rgb));
   background-color: rgb(var(--background-end-rgb));
 }
+
+button {
+  color: rgb(var(--button-rgb));
+  border-color: rgba(37, 99, 235, 1);
+}
+
+.SelectBox * {
+  color: rgb(var(--foreground-rgb));
+  border-color: rgba(37, 99, 235, 1);
+}
+
+.SideMenuList * {
+  color: rgb(var(--foreground-rgb));
+  border-color: rgba(37, 99, 235, 1);
+}

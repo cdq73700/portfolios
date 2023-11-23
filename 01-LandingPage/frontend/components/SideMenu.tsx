@@ -1,6 +1,5 @@
-'use client'
 import { toggleMenu } from '@/reducers/sideMenu.reducer'
-import { Box, Stack, SwipeableDrawer } from '@mui/material'
+import { Box, Link, Stack, SwipeableDrawer } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from '@/styles/components/SideMenu.styles.module.css'
 import { Anchor } from '@/types/sideMenu.type'
@@ -20,7 +19,9 @@ const SideMenu = ({ children }: { children: React.ReactNode }) => {
         onClose={() => dispach(toggleMenu(anchor))}
         onOpen={() => dispach(toggleMenu(anchor))}
       >
-        <Box className={Header}>HEADER</Box>
+        <Box className={Header}>
+          <Link href="/">HEADER</Link>
+        </Box>
         <Stack className={Body}>
           <Box>
             <Box className={Container}>{children}</Box>

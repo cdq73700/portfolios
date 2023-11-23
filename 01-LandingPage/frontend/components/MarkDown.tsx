@@ -1,5 +1,3 @@
-'use client'
-
 import { Link } from '@mui/icons-material'
 import { Box, Button } from '@mui/material'
 

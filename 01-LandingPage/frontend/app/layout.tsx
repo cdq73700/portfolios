@@ -4,6 +4,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { Box } from '@mui/material'
 import ReduxProvider from './ReduxProvider'
+import I18nProvider from './I18nProvider'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,16 +20,18 @@ export default function RootLayout({
     <html lang="ja" className={'dark'}>
       <body>
         <ReduxProvider>
-          <Header></Header>
-          <Box
-            display={'flex'}
-            minHeight={'100vh'}
-            flexDirection={'column'}
-            justifyContent={'space-between'}
-          >
-            <main>{children}</main>
-          </Box>
-          <Footer></Footer>
+          <I18nProvider>
+            <Header></Header>
+            <Box
+              display={'flex'}
+              minHeight={'100vh'}
+              flexDirection={'column'}
+              justifyContent={'space-between'}
+            >
+              <main>{children}</main>
+            </Box>
+            <Footer></Footer>
+          </I18nProvider>
         </ReduxProvider>
       </body>
     </html>

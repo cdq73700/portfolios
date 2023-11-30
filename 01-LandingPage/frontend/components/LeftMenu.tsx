@@ -1,5 +1,5 @@
 'use client'
-import { ExpandLess, ExpandMore, StarBorder } from '@mui/icons-material'
+import { ExpandLess, ExpandMore } from '@mui/icons-material'
 import {
   Box,
   Collapse,
@@ -12,8 +12,10 @@ import { useCallback, useState } from 'react'
 import InboxIcon from '@mui/icons-material/MoveToInbox'
 import { useSelector } from 'react-redux'
 import { Language } from '@/types/window.type'
+import { useTranslation } from 'react-i18next'
 
 const LeftMenu = () => {
+  const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const { language }: { language: Language } = useSelector(
     ({ window }) => window
@@ -42,7 +44,7 @@ const LeftMenu = () => {
               <ListItemIcon>
                 <Box>🐈</Box>
               </ListItemIcon>
-              <ListItemText primary="cat" />
+              <ListItemText primary={t('cat')} />
             </ListItemButton>
           </List>
         </Collapse>

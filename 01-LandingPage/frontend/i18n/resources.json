@@ -1,0 +1,20 @@
+{
+  "en": {
+    "translation": {
+      "Welcome to React": "Welcome to React and react-i18next",
+      "Main": "Main",
+      "Mode": "Mode",
+      "Language": "Language",
+      "cat": "cat"
+    }
+  },
+  "ja": {
+    "translation": {
+      "Welcome to React": "React と react-i18next へようこそ",
+      "Main": "メイン",
+      "Mode": "モード",
+      "Language": "言語",
+      "cat": "ねこ"
+    }
+  }
+}

@@ -1,27 +1,18 @@
-import { setTheme } from '@/reducers/window.reducer'
 import { DarkMode, LightMode } from '@mui/icons-material'
 import { Box, Button, ButtonGroup } from '@mui/material'
 import { useCallback } from 'react'
-import { useDispatch } from 'react-redux'
 import { Theme } from '@/types/window.type'
+import { useTheme } from 'next-themes'
+import { SetMode } from '@/lib/api/api'
 
 const ModeButton = () => {
-  const dispatch = useDispatch()
-
+  const { setTheme } = useTheme()
   const changeThemeCallback = useCallback(
-    (theme: Theme) => {
-      switch (theme) {
-        case 'dark':
-          dispatch(setTheme('dark'))
-          document.documentElement.classList.add('dark')
-          break
-        default:
-          dispatch(setTheme('right'))
-          document.documentElement.classList.remove('dark')
-          break
-      }
+    async (theme: Theme) => {
+      await SetMode(theme)
+      setTheme(theme)
     },
-    [dispatch]
+    [setTheme]
   )
 
   return (

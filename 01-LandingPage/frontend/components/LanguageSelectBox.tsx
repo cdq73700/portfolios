@@ -1,37 +1,36 @@
-import { setLanguage } from '@/reducers/window.reducer'
-import { Language } from '@/types/window.type'
+import { SetLanguage } from '@/lib/api/api'
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
-import { useCallback } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { GetCookie } from '@/lib/cookies'
 
 const LanguageSelectBox = () => {
-  const { language } = useSelector(({ window }) => window)
-  const dispatch = useDispatch()
+  const [lang, setLang] = useState('en')
   const { t, i18n } = useTranslation()
 
   const changeLanguageCallback = useCallback(
-    (language: Language) => {
-      switch (language) {
-        case 'ja':
-          dispatch(setLanguage('ja'))
-          document.documentElement.lang = 'ja'
-          i18n.changeLanguage('ja')
-          break
-        case 'en':
-          dispatch(setLanguage('en'))
-          document.documentElement.lang = 'en'
-          i18n.changeLanguage('en')
-          break
-        default:
-          dispatch(setLanguage('en'))
-          document.documentElement.lang = 'en'
-          i18n.changeLanguage('en')
-          break
-      }
+    async (language: string) => {
+      console.log(language)
+      await SetLanguage(language)
+      document.documentElement.lang = language
+      i18n.changeLanguage(language)
+      setLang(language)
     },
-    [dispatch, i18n]
+    [i18n]
   )
+
+  useEffect(() => {
+    const getLangCookie = async function () {
+      const langCookie = await GetCookie('language')
+      const initialLang = langCookie ? langCookie.value : 'en'
+      setLang(initialLang)
+      // 初期読み込み時に言語切り替えも行う
+      await changeLanguageCallback(initialLang)
+    }
+
+    getLangCookie()
+  }, [changeLanguageCallback])
+
   return (
     <>
       <FormControl fullWidth className="SelectBox">
@@ -39,7 +38,7 @@ const LanguageSelectBox = () => {
         <Select
           labelId="language-select-label"
           id="language-select"
-          value={language}
+          value={lang}
           label="Language"
           onChange={(e) => changeLanguageCallback(e.target.value)}
         >

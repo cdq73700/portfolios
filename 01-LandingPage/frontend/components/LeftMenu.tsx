@@ -8,18 +8,24 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import InboxIcon from '@mui/icons-material/MoveToInbox'
-import { useSelector } from 'react-redux'
-import { Language } from '@/types/window.type'
 import { useTranslation } from 'react-i18next'
+import { GetCookie } from '@/lib/cookies'
 
 const LeftMenu = () => {
   const { t } = useTranslation()
+  const [lang, setLang] = useState('en')
   const [open, setOpen] = useState(false)
-  const { language }: { language: Language } = useSelector(
-    ({ window }) => window
-  )
+
+  useEffect(() => {
+    const getLangCookie = async function () {
+      const lnagCookie = await GetCookie('language')
+      setLang(lnagCookie ? lnagCookie.value : 'en')
+    }
+
+    getLangCookie()
+  }, [])
 
   const handleClick = useCallback(() => {
     setOpen(!open)
@@ -39,7 +45,7 @@ const LeftMenu = () => {
           <List component="div" disablePadding>
             <ListItemButton
               style={{ paddingLeft: '2.5rem' }}
-              href={`/${language}/cat`}
+              href={`/${lang}/cat`}
             >
               <ListItemIcon>
                 <Box>🐈</Box>

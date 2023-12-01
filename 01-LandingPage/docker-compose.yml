@@ -1,6 +1,15 @@
 version: '3.9'
 
 services:
+  nginx:
+    build:
+      context: .
+      dockerfile: ./Dockerfile/Nginx.Dockerfile
+    ports:
+      - 8000:80
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf.d
+    tty: true
   frontend:
     build:
       context: .

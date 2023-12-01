@@ -5,7 +5,8 @@
       "Main": "Main",
       "Mode": "Mode",
       "Language": "Language",
-      "cat": "cat"
+      "cat": "cat",
+      "dog": "dog"
     }
   },
   "ja": {
@@ -14,7 +15,8 @@
       "Main": "メイン",
       "Mode": "モード",
       "Language": "言語",
-      "cat": "ねこ"
+      "cat": "ねこ",
+      "dog": "いぬ"
     }
   }
 }

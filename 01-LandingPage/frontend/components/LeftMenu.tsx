@@ -8,7 +8,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import InboxIcon from '@mui/icons-material/MoveToInbox'
 import { useTranslation } from 'react-i18next'
 import { GetCookie } from '@/lib/cookies'
@@ -16,7 +16,14 @@ import { GetCookie } from '@/lib/cookies'
 const LeftMenu = () => {
   const { t } = useTranslation()
   const [lang, setLang] = useState('en')
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
+
+  const list = useMemo(() => {
+    return [
+      { icon: '🐈', text: 'cat' },
+      { icon: '🐶', text: 'dog' },
+    ]
+  }, [])
 
   useEffect(() => {
     const getLangCookie = async function () {
@@ -43,15 +50,20 @@ const LeftMenu = () => {
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton
-              style={{ paddingLeft: '2.5rem' }}
-              href={`/${lang}/cat`}
-            >
-              <ListItemIcon>
-                <Box>🐈</Box>
-              </ListItemIcon>
-              <ListItemText primary={t('cat')} />
-            </ListItemButton>
+            {list.map(({ icon, text }, index) => {
+              return (
+                <ListItemButton
+                  key={index}
+                  style={{ paddingLeft: '2.5rem' }}
+                  href={`/${lang}/${text}`}
+                >
+                  <ListItemIcon>
+                    <Box>{icon}</Box>
+                  </ListItemIcon>
+                  <ListItemText primary={t(text)} />
+                </ListItemButton>
+              )
+            })}
           </List>
         </Collapse>
       </List>

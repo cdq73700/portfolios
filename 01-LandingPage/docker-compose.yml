@@ -6,8 +6,9 @@ services:
       context: .
       dockerfile: ./Dockerfile/Nginx.Dockerfile
     ports:
-      - 8000:80
+      - 8000:443
     volumes:
+      - ./openssl/certs:/docker/certs
       - ./nginx/conf:/etc/nginx/conf.d
     tty: true
   frontend:
@@ -28,3 +29,10 @@ services:
     volumes:
       - ./backend:/docker/backend
     tty: true
+  openssl:
+    build:
+      context: .
+      dockerfile: "./Dockerfile/OpenSSL.Dockerfile"
+    profiles: [ "openssl" ]
+    volumes:
+      - ./openssl/certs:/docker/certs

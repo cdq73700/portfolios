@@ -6,11 +6,15 @@ import { AppDataSource } from './data-source'
 
 async function bootstrap() {
   await AppDataSource.initialize()
-  const app = await NestFactory.create(AppModule)
+  const app = await NestFactory.create(AppModule, { cors: true })
   app.use(cookieParser())
   app.enableCors({
     credentials: true,
-    origin: ['http://localhost:3000', 'http://localhost:8000'],
+    origin: [
+      'http://localhost:3000',
+      'http://localhost:8000',
+      'https://localhost:8000',
+    ],
   })
   await app.listen(4000)
 }

@@ -4,7 +4,8 @@ export default function Page() {
   return (
     <>
       <MarkDown title="dog" id="dog">
-        <p>
+        <></>
+        {/* <p>
           The dog (Canis familiaris[4][5] or Canis lupus familiaris[5]) is a
           domesticated descendant of the wolf. Also called the domestic dog, it
           is derived from extinct Pleistocene wolves,[6][7] and the modern wolf
@@ -23,7 +24,7 @@ export default function Page() {
           human behavior, and the human–canine bond has been a topic of frequent
           study.[13] This influence on human society has given them the
           sobriquet of "man's best friend".[14]
-        </p>
+        </p> */}
       </MarkDown>
     </>
   )

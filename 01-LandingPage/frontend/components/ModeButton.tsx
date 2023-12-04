@@ -6,23 +6,31 @@ import { useTheme } from 'next-themes'
 import { SetMode } from '@/lib/api/api'
 
 const ModeButton = () => {
-  const { setTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
   const changeThemeCallback = useCallback(
-    async (theme: Theme) => {
-      await SetMode(theme)
-      setTheme(theme)
+    async (mode: Theme) => {
+      if (theme != mode) {
+        await SetMode(mode)
+        setTheme(mode)
+      }
     },
-    [setTheme]
+    [setTheme, theme]
   )
 
   return (
     <>
       <ButtonGroup>
-        <Button onClick={() => changeThemeCallback('right')}>
+        <Button
+          disabled={theme == 'light'}
+          onClick={() => changeThemeCallback('light')}
+        >
           <LightMode></LightMode>
           <Box padding={'0.25rem'}>Light</Box>
         </Button>
-        <Button onClick={() => changeThemeCallback('dark')}>
+        <Button
+          disabled={theme == 'dark'}
+          onClick={() => changeThemeCallback('dark')}
+        >
           <DarkMode></DarkMode>
           <Box padding={'0.25rem'}>Dark</Box>
         </Button>

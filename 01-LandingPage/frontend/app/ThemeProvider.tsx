@@ -1,10 +1,26 @@
 'use client'
 
+import { SetMode } from '@/lib/api/api'
 import { ThemeProvider as NextThemeProvider } from 'next-themes'
 
-function ThemeProvider({ children }: { children: React.ReactNode }) {
+function ThemeProvider({
+  mode,
+  initFlg,
+  children,
+}: {
+  mode: string
+  initFlg: boolean
+  children: React.ReactNode
+}) {
+  if (initFlg) {
+    SetMode(mode)
+  }
   return (
-    <NextThemeProvider attribute="class" enableSystem={false}>
+    <NextThemeProvider
+      defaultTheme={'dark'}
+      attribute="class"
+      enableSystem={false}
+    >
       {children}
     </NextThemeProvider>
   )

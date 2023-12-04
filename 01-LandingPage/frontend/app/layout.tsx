@@ -16,9 +16,23 @@ export const metadata: Metadata = {
 function GetMode() {
   const GetModeCookie = async function () {
     const cookie = await GetCookie('mode')
-    return cookie?.value ?? 'dark'
+    if (!cookie) {
+      return { mode: 'dark', initModeFlg: true }
+    }
+    return { mode: cookie.value, initModeFlg: false }
   }
   return GetModeCookie()
+}
+
+function GetLang() {
+  const GetLangCookie = async function () {
+    const cookie = await GetCookie('language')
+    if (!cookie) {
+      return { lang: 'en', initLangFlg: true }
+    }
+    return { lang: cookie.value, initLangFlg: false }
+  }
+  return GetLangCookie()
 }
 
 export default async function RootLayout({
@@ -26,13 +40,14 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const mode = await GetMode()
+  const { mode, initModeFlg } = await GetMode()
+  const { lang, initLangFlg } = await GetLang()
   return (
-    <html lang="ja" style={{ colorScheme: mode }} className={mode}>
+    <html lang={lang} style={{ colorScheme: mode }} className={mode}>
       <body>
         <ReduxProvider>
-          <ThemeProvider>
-            <I18nProvider>
+          <ThemeProvider mode={mode} initFlg={initModeFlg}>
+            <I18nProvider lang={lang} initFlg={initLangFlg}>
               <Header></Header>
               <Box
                 display={'flex'}

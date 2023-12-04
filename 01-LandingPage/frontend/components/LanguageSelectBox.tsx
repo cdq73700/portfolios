@@ -1,18 +1,28 @@
+'use client'
 import { SetLanguage } from '@/lib/api/api'
+import { GetCookie } from '@/lib/cookies'
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { GetCookie } from '@/lib/cookies'
 
-const LanguageSelectBox = () => {
+function GetLang() {
+  const GetLangCookie = async function () {
+    const cookie = await GetCookie('language')
+    if (!cookie) {
+      return 'en'
+    }
+    return cookie.value
+  }
+  return GetLangCookie()
+}
+
+function LanguageSelectBox() {
   const [lang, setLang] = useState('en')
   const { t, i18n } = useTranslation()
 
-  const changeLanguageCallback = useCallback(
+  const ChangeLanguageCallback = useCallback(
     async (language: string) => {
-      console.log(language)
       await SetLanguage(language)
-      document.documentElement.lang = language
       i18n.changeLanguage(language)
       setLang(language)
     },
@@ -20,16 +30,12 @@ const LanguageSelectBox = () => {
   )
 
   useEffect(() => {
-    const getLangCookie = async function () {
-      const langCookie = await GetCookie('language')
-      const initialLang = langCookie ? langCookie.value : 'en'
-      setLang(initialLang)
-      // 初期読み込み時に言語切り替えも行う
-      await changeLanguageCallback(initialLang)
+    const fnc = async function () {
+      const res = await GetLang()
+      setLang(res)
     }
-
-    getLangCookie()
-  }, [changeLanguageCallback])
+    fnc()
+  }, [])
 
   return (
     <>
@@ -40,7 +46,7 @@ const LanguageSelectBox = () => {
           id="language-select"
           value={lang}
           label="Language"
-          onChange={(e) => changeLanguageCallback(e.target.value)}
+          onChange={(e) => ChangeLanguageCallback(e.target.value)}
         >
           <MenuItem value={'en'}>English</MenuItem>
           <MenuItem value={'ja'}>日本語</MenuItem>

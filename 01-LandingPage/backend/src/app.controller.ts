@@ -23,15 +23,24 @@ export class AppController {
     res
       .status(HttpStatus.OK)
       .cookie('language', lang, { httpOnly: true })
-      .json({ language: lang })
+      .json({
+        type: 'cookie',
+        key: 'language',
+        value: lang,
+        path: '/',
+        httpOnly: true,
+      })
   }
 
   @Post('/api/mode')
   setMode(@Req() req: Request, @Res() res: Response) {
     const mode = req.body.mode ?? 'dark'
-    res
-      .status(HttpStatus.OK)
-      .cookie('mode', mode, { httpOnly: true })
-      .json({ mode: mode })
+    res.status(HttpStatus.OK).cookie('mode', mode, { httpOnly: true }).json({
+      type: 'cookie',
+      key: 'mode',
+      value: mode,
+      path: '/',
+      httpOnly: true,
+    })
   }
 }

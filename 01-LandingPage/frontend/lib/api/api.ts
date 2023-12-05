@@ -40,10 +40,10 @@ async function SetMode(mode: string) {
   return data
 }
 
-async function GetProfile() {
-  const data = await FetchApi('profile', {
+async function GetProfile(lang: string) {
+  const data = await FetchApi(`profile/${lang}`, {
     method: 'GET',
-    cache: 'force-cache',
+    cache: 'no-store',
     next: { tags: ['profile'] },
   })
   return data

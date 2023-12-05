@@ -1,7 +1,7 @@
 import { Controller, Get, HttpStatus, Post, Req, Res } from '@nestjs/common'
 import { AppService } from './app.service'
-import { Users } from './entities/users'
 import { Request, Response } from 'express'
+import { Profile } from './entities/profile'
 
 @Controller()
 export class AppController {
@@ -12,9 +12,10 @@ export class AppController {
     return this.appService.getHello()
   }
 
-  @Get('/api/profile')
-  getProfile(): Promise<Users[]> {
-    return this.appService.getProfile()
+  @Get('/api/profile/:lang')
+  getProfile(@Req() req: Request): Promise<Profile[]> {
+    const lang = req.params.lang
+    return this.appService.getProfile(lang)
   }
 
   @Post('/api/language')

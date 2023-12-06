@@ -1,14 +1,16 @@
-'use client'
-
 import MarkDown from '@/components/MarkDown'
-import { useTranslation } from 'react-i18next'
 
 export default function Home() {
-  const { t } = useTranslation()
+  const params = {
+    id: 'Main',
+    title: 'Main',
+    body: 'Main',
+  }
+  const body = 'Main'
   return (
     <>
-      <MarkDown title={t('Main')} id="main">
-        <p>{t('Main')}</p>
+      <MarkDown params={params}>
+        <></>
       </MarkDown>
     </>
   )

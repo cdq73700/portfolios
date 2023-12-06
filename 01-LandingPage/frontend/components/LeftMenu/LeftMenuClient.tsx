@@ -1,29 +1,26 @@
 'use client'
-import { ExpandLess, ExpandMore } from '@mui/icons-material'
-import {
-  Box,
-  Collapse,
-  List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-} from '@mui/material'
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import InboxIcon from '@mui/icons-material/MoveToInbox'
-import { useTranslation } from 'react-i18next'
-import { GetCookie } from '@/lib/cookies'
 
-const LeftMenu = () => {
+import { ExpandLess, ExpandMore, Home } from '@mui/icons-material'
+import { Box, Collapse, List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
+import InboxIcon from '@mui/icons-material/MoveToInbox'
+import { useCallback, useEffect, useState } from 'react'
+import { GetCookie } from '@/lib/cookies'
+import { useTranslation } from 'react-i18next'
+
+type Inbox = {
+  icon: string
+  text: string
+}
+
+type Props = {
+  profile: string
+  inbox: Array<Inbox>
+}
+
+export default function LeftMenuClient({ profile, inbox }: Props) {
   const { t } = useTranslation()
   const [lang, setLang] = useState('en')
   const [open, setOpen] = useState(true)
-
-  const list = useMemo(() => {
-    return [
-      { icon: '🐈', text: 'cat' },
-      { icon: '🐶', text: 'dog' },
-    ]
-  }, [])
 
   useEffect(() => {
     const getLangCookie = async function () {
@@ -41,6 +38,12 @@ const LeftMenu = () => {
   return (
     <>
       <List className="SideMenuList">
+        <ListItemButton href={`/${lang}/profile`}>
+          <ListItemIcon>
+            <Home></Home>
+          </ListItemIcon>
+          <ListItemText primary={t(profile)}></ListItemText>
+        </ListItemButton>
         <ListItemButton onClick={handleClick}>
           <ListItemIcon>
             <InboxIcon />
@@ -50,13 +53,9 @@ const LeftMenu = () => {
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            {list.map(({ icon, text }, index) => {
+            {inbox.map(({ icon, text }, index) => {
               return (
-                <ListItemButton
-                  key={index}
-                  style={{ paddingLeft: '2.5rem' }}
-                  href={`/${lang}/${text}`}
-                >
+                <ListItemButton key={index} style={{ paddingLeft: '2.5rem' }} href={`/${lang}/${text}`}>
                   <ListItemIcon>
                     <Box>{icon}</Box>
                   </ListItemIcon>
@@ -70,5 +69,3 @@ const LeftMenu = () => {
     </>
   )
 }
-
-export default LeftMenu

@@ -5,8 +5,16 @@
       "Main": "Main",
       "Mode": "Mode",
       "Language": "Language",
+      "profile": "Profile",
       "cat": "cat",
-      "dog": "dog"
+      "dog": "dog",
+      "Name": "Name",
+      "EMail": "Email",
+      "Tel": "Tel",
+      "Post": "Post",
+      "Address": "Address",
+      "createdAt": "createdAt",
+      "updatedAt": "updatedAt"
     }
   },
   "ja": {
@@ -15,8 +23,16 @@
       "Main": "メイン",
       "Mode": "モード",
       "Language": "言語",
+      "profile": "プロファイル",
       "cat": "ねこ",
-      "dog": "いぬ"
+      "dog": "いぬ",
+      "Name": "名前",
+      "Email": "メールアドレス",
+      "Tel": "電話番号",
+      "Post": "郵便番号",
+      "Address": "住所",
+      "createdAt": "作成日",
+      "updatedAt": "更新日"
     }
   }
 }

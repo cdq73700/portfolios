@@ -3,10 +3,8 @@ import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { Box } from '@mui/material'
-import ReduxProvider from './ReduxProvider'
-import I18nProvider from './I18nProvider'
-import ThemeProvider from './ThemeProvider'
 import { GetCookie } from '@/lib/cookies'
+import Provider from './Provider'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,9 +15,9 @@ function GetMode() {
   const GetModeCookie = async function () {
     const cookie = await GetCookie('mode')
     if (!cookie) {
-      return { mode: 'dark', initModeFlg: true }
+      return { value: 'dark', flg: true }
     }
-    return { mode: cookie.value, initModeFlg: false }
+    return { value: cookie.value, flg: false }
   }
   return GetModeCookie()
 }
@@ -28,39 +26,26 @@ function GetLang() {
   const GetLangCookie = async function () {
     const cookie = await GetCookie('language')
     if (!cookie) {
-      return { lang: 'en', initLangFlg: true }
+      return { value: 'en', flg: true }
     }
-    return { lang: cookie.value, initLangFlg: false }
+    return { value: cookie.value, flg: false }
   }
   return GetLangCookie()
 }
 
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  const { mode, initModeFlg } = await GetMode()
-  const { lang, initLangFlg } = await GetLang()
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const modeData = await GetMode()
+  const langData = await GetLang()
   return (
-    <html lang={lang} style={{ colorScheme: mode }} className={mode}>
+    <html lang={langData.value} style={{ colorScheme: modeData.value }} className={modeData.value}>
       <body>
-        <ReduxProvider>
-          <ThemeProvider mode={mode} initFlg={initModeFlg}>
-            <I18nProvider lang={lang} initFlg={initLangFlg}>
-              <Header></Header>
-              <Box
-                display={'flex'}
-                minHeight={'100vh'}
-                flexDirection={'column'}
-                justifyContent={'space-between'}
-              >
-                <main>{children}</main>
-              </Box>
-              <Footer></Footer>
-            </I18nProvider>
-          </ThemeProvider>
-        </ReduxProvider>
+        <Provider modeData={modeData} langData={langData}>
+          <Header></Header>
+          <Box display={'flex'} minHeight={'100vh'} flexDirection={'column'} justifyContent={'space-between'}>
+            <main>{children}</main>
+          </Box>
+          <Footer></Footer>
+        </Provider>
       </body>
     </html>
   )

@@ -1,52 +1,43 @@
 'use server'
+
+import { Cookie } from '@/types/Application.Type'
+import { CookieData, GetCookieProps, SetCookieProps } from '@/types/lib/Cookies.Type'
 import { cookies } from 'next/headers'
 
-async function GetCookie(key: string) {
+async function GetCookie({ name }: GetCookieProps) {
   const cookieStore = cookies()
-  const cookie = cookieStore.get(key)
+  const cookie = cookieStore.get(name)
   return cookie
 }
 
-type Cookie = {
-  key: string
-  value: string
-  options: object
-}
+async function SetCookie({ cookie }: SetCookieProps) {
+  const cookieList = cookie.split(';')
+  const cookieData: CookieData = cookieList.reduce(
+    (previousValue: Cookie, currentValue, index) => {
+      const items = currentValue.split('=')
+      if (index == 0) {
+        previousValue = {
+          key: items[0],
+          value: items[1],
+          options: {},
+        }
+      } else {
+        previousValue = {
+          ...previousValue,
+          options: {
+            ...previousValue.options,
+            [items[0]]: items[1] ?? true,
+          },
+        }
+      }
+      return previousValue
+    },
+    { key: '', value: '', options: {} }
+  )
 
-async function SetCookie(res: Response) {
-  const header: Array<Cookie> =
-    res.headers.getSetCookie().map((item) => {
-      const cookieList = item.split(';')
-      const cookieData = cookieList.reduce(
-        (previousValue: Cookie, currentValue, index) => {
-          const items = currentValue.split('=')
-          if (index == 0) {
-            previousValue = {
-              key: items[0],
-              value: items[1],
-              options: {},
-            }
-          } else {
-            previousValue = {
-              ...previousValue,
-              options: {
-                ...previousValue.options,
-                [items[0]]: items[1] ?? true,
-              },
-            }
-          }
-          return previousValue
-        },
-        { key: '', value: '', options: {} }
-      )
-      return cookieData
-    }) ?? []
-
-  if (header.length) {
+  if (cookieData.key !== '') {
     const cookieStore = cookies()
-    header.map((item) => {
-      cookieStore.set(item.key, item.value, { ...item.options })
-    })
+    cookieStore.set(cookieData.key, cookieData.value, { ...cookieData.options })
   }
 }
 

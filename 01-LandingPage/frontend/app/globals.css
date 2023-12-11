@@ -18,27 +18,9 @@
   --button-rgb: 255, 255, 255;
 }
 
-header {
-  width: 100%;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  align-content: center;
-  position: fixed;
-  top: 0%;
-  left: 0%;
-  color: rgb(var(--foreground-rgb));
-  background-color: rgba(var(--background-rgba));
-  backdrop-filter: blur(3px);
-}
-
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
 main {
@@ -58,6 +40,19 @@ footer {
 button {
   color: rgb(var(--button-rgb));
   border-color: rgba(37, 99, 235, 1);
+}
+
+.Header {
+  width: 100%;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  align-content: center;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  color: rgb(var(--foreground-rgb));
+  background-color: rgba(var(--background-rgba));
+  backdrop-filter: blur(3px);
 }
 
 .SelectBox * {

@@ -1,6 +1,7 @@
+'use client'
 import { Box } from '@mui/material'
 
-const Footer = () => {
+export default function FooterClient() {
   return (
     <>
       <footer>
@@ -11,5 +12,3 @@ const Footer = () => {
     </>
   )
 }
-
-export default Footer

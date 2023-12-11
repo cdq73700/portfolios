@@ -1,11 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import windowStore from './window.store'
-import sideMenuStore from '@/stores/sideMenu.store'
+import ApplicationStore from './Application.Store'
 
 export const store = configureStore({
   reducer: {
-    ...windowStore.reducer,
-    ...sideMenuStore.reducer,
+    ...ApplicationStore.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 })

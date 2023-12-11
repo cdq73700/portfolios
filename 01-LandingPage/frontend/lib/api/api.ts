@@ -1,8 +1,8 @@
 'use server'
-import { SetCookie } from '../cookies'
 
-async function FetchApi(path: string, init: RequestInit) {
-  console.log(`${process.env.NEXT_PUBLIC_API_URL}/api/${path}`)
+import { CookieIssueProps, FetchApiProps, GetJsonProps } from '@/types/lib/api/Api.Type'
+
+async function FetchApi({ path, init }: FetchApiProps) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${path}`, {
     headers: {
       Accept: 'application/json',
@@ -13,40 +13,40 @@ async function FetchApi(path: string, init: RequestInit) {
     ...init,
   })
 
-  await SetCookie(res)
+  return res
+}
+
+async function GetJson({ res }: GetJsonProps) {
   const json = await res.json()
   return json
 }
 
-async function SetLanguage(lang: string) {
-  const body = { lang: lang }
-  console.log(body)
-  const data = await FetchApi('language', {
-    method: 'POST',
-    body: JSON.stringify(body),
-    credentials: 'include',
-  })
-
-  return data
-}
-
-async function SetMode(mode: string) {
-  const body = { mode: mode }
-  const data = await FetchApi('mode', {
-    method: 'POST',
-    body: JSON.stringify(body),
-    credentials: 'include',
-  })
-  return data
-}
-
 async function GetProfile(lang: string) {
-  const data = await FetchApi(`profile/${lang}`, {
-    method: 'GET',
-    cache: 'no-store',
-    next: { tags: ['profile'] },
-  })
-  return data
+  const params: FetchApiProps = {
+    path: `profile/${lang}`,
+    init: {
+      method: 'GET',
+      cache: 'no-store',
+      next: { tags: ['profile'] },
+    },
+  }
+  const res = await FetchApi(params)
+  const json = await GetJson({ res })
+  return json
 }
 
-export { SetLanguage, SetMode, GetProfile }
+async function CookieIssue({ name, body }: CookieIssueProps) {
+  const params: FetchApiProps = {
+    path: name,
+    init: {
+      method: body ? 'POST' : 'GET',
+      body: body ? JSON.stringify({ [body.key]: body.value }) : undefined,
+      credentials: 'include',
+      cache: 'force-cache',
+    },
+  }
+  const res = await FetchApi(params)
+  return res
+}
+
+export { CookieIssue, GetProfile }

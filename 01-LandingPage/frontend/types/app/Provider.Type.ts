@@ -25,6 +25,7 @@ export type ProviderClientProps = {
   params: {
     language: Language
     theme: Theme
+    i18n: any
   }
   children: React.ReactNode
 }

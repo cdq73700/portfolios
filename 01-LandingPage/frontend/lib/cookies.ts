@@ -14,24 +14,21 @@ async function SetCookie({ cookie }: SetCookieProps) {
   const cookieList = cookie.split(';')
   const cookieData: CookieData = cookieList.reduce(
     (previousValue: Cookie, currentValue, index) => {
-      const items = currentValue.split('=')
-      const key = items[0].trim()
-      const value = items[1]?.trim() ?? true
-      if (index == 0) {
+      const [key, rawValue = true] = currentValue.split('=').map((item) => item.trim())
+      const value = index === 0 ? rawValue : { [key[0].toLowerCase() + key.slice(1)]: rawValue }
+      if (typeof value === 'string') {
         previousValue = {
           key,
           value,
           options: {},
         }
-      } else {
-        const first = key.substring(0, 1).toLocaleLowerCase()
-        const other = key.substring(1)
-        const newKey = first + other
+      }
+      if (typeof value === 'object') {
         previousValue = {
           ...previousValue,
           options: {
             ...previousValue.options,
-            [newKey]: value,
+            ...value,
           },
         }
       }

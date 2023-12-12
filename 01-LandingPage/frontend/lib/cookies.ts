@@ -15,18 +15,23 @@ async function SetCookie({ cookie }: SetCookieProps) {
   const cookieData: CookieData = cookieList.reduce(
     (previousValue: Cookie, currentValue, index) => {
       const items = currentValue.split('=')
+      const key = items[0].trim()
+      const value = items[1]?.trim() ?? true
       if (index == 0) {
         previousValue = {
-          key: items[0],
-          value: items[1],
+          key,
+          value,
           options: {},
         }
       } else {
+        const first = key.substring(0, 1).toLocaleLowerCase()
+        const other = key.substring(1)
+        const newKey = first + other
         previousValue = {
           ...previousValue,
           options: {
             ...previousValue.options,
-            [items[0]]: items[1] ?? true,
+            [newKey]: value,
           },
         }
       }

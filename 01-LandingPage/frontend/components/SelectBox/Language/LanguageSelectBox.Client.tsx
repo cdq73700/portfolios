@@ -1,6 +1,5 @@
 'use client'
 
-import { CookieIssue } from '@/lib/api/api'
 import { setLanguage } from '@/reducers/Application.Reducer'
 import { Language } from '@/types/Application.Type'
 import { LanguageSelectBoxClientProps } from '@/types/components/SelectBox/Language.Type'
@@ -29,7 +28,6 @@ export default function LanguageSelectBoxClient({ params, action }: LanguageSele
         id="language-select"
         value={lang}
         label="Language"
-        type="submit"
         onChange={(e) => ChangeLanguageCallback(e.target.value as Language)}
       >
         {languages.map(({ value, text }, index) => {

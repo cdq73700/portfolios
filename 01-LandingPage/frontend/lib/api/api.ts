@@ -26,7 +26,7 @@ async function GetProfile(lang: string) {
     path: `profile/${lang}`,
     init: {
       method: 'GET',
-      cache: 'no-store',
+      cache: 'no-cache',
       next: { tags: ['profile'] },
     },
   }
@@ -42,7 +42,7 @@ async function CookieIssue({ name, body }: CookieIssueProps) {
       method: body ? 'POST' : 'GET',
       body: body ? JSON.stringify({ [body.key]: body.value }) : undefined,
       credentials: 'include',
-      cache: 'force-cache',
+      cache: 'no-cache',
     },
   }
   const res = await FetchApi(params)

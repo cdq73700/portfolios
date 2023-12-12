@@ -4,7 +4,7 @@ import { Cookie } from '@/types/Application.Type'
 import { CookieData, GetCookieProps, SetCookieProps } from '@/types/lib/Cookies.Type'
 import { cookies } from 'next/headers'
 
-async function GetCookie({ name }: GetCookieProps) {
+function GetCookie({ name }: GetCookieProps) {
   const cookieStore = cookies()
   const cookie = cookieStore.get(name)
   return cookie

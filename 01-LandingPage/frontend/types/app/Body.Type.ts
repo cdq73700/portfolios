@@ -3,15 +3,6 @@ import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies'
 /**
  * BodyServer
  */
-export type GetDataProps = {
-  params: Promise<{
-    cookie: RequestCookie | undefined
-    inbox: {
-      name: string
-      init: string
-    }
-  }>
-}
 
 export type BodyServerProps = {
   children: React.ReactNode
@@ -22,15 +13,10 @@ export type Inbox = {
   init: string
 }
 
-export type Cookie = {
-  key: string
-  value: string
-}
-
 /**
  * BodyClient
  */
 export type BodyClientProps = {
-  params: Array<Cookie>
+  params: Array<RequestCookie>
   children: React.ReactNode
 }

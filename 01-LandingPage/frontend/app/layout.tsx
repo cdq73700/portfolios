@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import ReduxProviderClient from './ReduxProvider.Client'
-import CookieServer from '@/components/Cookie/Cookie.Server'
 import { Box } from '@mui/material'
 import BodyServer from './Body.Server'
 import FooterServer from '@/components/Footer/Footer.Server'
@@ -10,7 +9,7 @@ import HeaderServer from '@/components/Header/Header.Server'
 import SideMenuServer from '@/components/SideMenu/SideMenu.Server'
 import LeftMenuServer from '@/components/LeftMenu/LeftMenu.Server'
 import RightMenuServer from '@/components/RightMenu/RightMenu.Server'
-import { Api, RootLayoutProps } from '@/types/app/layout.Type'
+import { RootLayoutProps } from '@/types/app/layout.Type'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,26 +17,8 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  const api: Array<Api> = [
-    {
-      name: 'language',
-      body: {
-        key: 'lang',
-        value: 'en',
-      },
-    },
-    {
-      name: 'mode',
-      body: {
-        key: 'mode',
-        value: 'dark',
-      },
-    },
-  ]
-
   return (
     <ReduxProviderClient>
-      <CookieServer params={{ api }}></CookieServer>
       <BodyServer>
         <HeaderProvider>
           <HeaderServer></HeaderServer>

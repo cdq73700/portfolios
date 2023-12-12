@@ -16,6 +16,7 @@ export default function ProviderClient({ params, children }: ProviderClientProps
     i18n.changeLanguage(language)
     dispatch(setLanguage(language))
   }, [language, dispatch])
+
   return (
     <>
       <I18nextProvider i18n={i18n} defaultNS={'translation'}>

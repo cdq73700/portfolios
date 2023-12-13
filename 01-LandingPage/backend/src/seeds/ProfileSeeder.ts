@@ -1,13 +1,12 @@
 import { Seeder } from 'typeorm-extension'
 import { DataSource } from 'typeorm'
-import { Profile } from '../entities/profile'
+import { Profile } from '../entities/Profile'
 
 export default class ProfileSeeder implements Seeder {
   public async run(dataSource: DataSource): Promise<any> {
     const repository = dataSource.getRepository(Profile)
 
     const profileJp = new Profile(
-      crypto.randomUUID(),
       'catman',
       'aaaaa@aaa.aaa',
       '0000-00-0000',
@@ -18,7 +17,6 @@ export default class ProfileSeeder implements Seeder {
     )
 
     const profileEn = new Profile(
-      crypto.randomUUID(),
       'catman',
       'aaaaa@aaa.aaa',
       '0000-00-0000',

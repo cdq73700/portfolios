@@ -1,75 +1,34 @@
-import { MigrationInterface, QueryRunner, Table, TableIndex } from 'typeorm'
+import { Profile } from '../entities/Profile'
+import {
+  Column,
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableColumn,
+  TableIndex,
+} from 'typeorm'
+
+const tableName: string = Profile.name.toLowerCase()
+const indexName: string = 'IDX_PROFILE_LANGUAGE'
 
 export class ProfileTable1701763241067 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.createTable(
-      new Table({
-        name: 'profile',
-        columns: [
-          {
-            name: 'id',
-            type: 'uuid',
-            isPrimary: true,
-            default: 'gen_random_uuid()',
-            comment: 'ID',
-          },
-          {
-            name: 'name',
-            type: 'varchar',
-            comment: '名前',
-          },
-          {
-            name: 'email',
-            type: 'varchar',
-            comment: 'メールアドレス',
-          },
-          {
-            name: 'tel',
-            type: 'varchar',
-            comment: '電話番号',
-          },
-          {
-            name: 'post',
-            type: 'varchar',
-            comment: '郵便番号',
-          },
-          {
-            name: 'address',
-            type: 'varchar',
-            comment: '住所',
-          },
-          {
-            name: 'language',
-            type: 'varchar',
-            comment: '言語',
-          },
-          {
-            name: 'isActive',
-            type: 'boolean',
-            comment: 'アクティブ',
-          },
-          {
-            name: 'created_at',
-            type: 'timestamp',
-            default: 'now()',
-            comment: '作成日時',
-          },
-          {
-            name: 'updated_at',
-            type: 'timestamp',
-            default: 'now()',
-            onUpdate: 'now()',
-            comment: '更新日時',
-          },
-        ],
-      }),
-      true
-    )
+    const columns = queryRunner.connection
+      .getMetadata(Profile)
+      .ownColumns.map((column) => {
+        const columnOptions: PropertyDecorator = Column({ ...column })
+        return new TableColumn({
+          ...columnOptions,
+          name: column.propertyName,
+          type: column.type.toString(),
+        })
+      })
+    await queryRunner.createTable(new Table({ name: tableName, columns }))
 
     await queryRunner.createIndex(
-      'profile',
+      tableName,
       new TableIndex({
-        name: 'IDX_PROFILE_LANGUAGE',
+        name: indexName,
         columnNames: ['language'],
         isUnique: true,
       })
@@ -77,7 +36,7 @@ export class ProfileTable1701763241067 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropIndex('profile', 'IDX_PROFILE_LANGUAGE')
-    await queryRunner.dropTable('profile')
+    await queryRunner.dropIndex(tableName, indexName)
+    await queryRunner.dropTable(tableName)
   }
 }

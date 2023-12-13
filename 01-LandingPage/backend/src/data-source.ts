@@ -1,14 +1,13 @@
 import { DataSource, DataSourceOptions } from 'typeorm'
 import { SeederOptions } from 'typeorm-extension'
-import { Users } from './entities/users'
-import { Profile } from './entities/profile'
+import { Profile } from './entities/Profile'
 
 const options: DataSourceOptions & SeederOptions = {
   type: 'sqlite',
   database: 'database/db.sqlite3',
-  synchronize: true,
+  synchronize: false,
   logging: true,
-  entities: [Users, Profile],
+  entities: [Profile],
   subscribers: [],
   migrations: [],
   seeds: [],

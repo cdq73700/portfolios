@@ -19,6 +19,7 @@ services:
       - 3000:3000
     volumes:
       - ./frontend:/docker/frontend
+      - ./swagger/output:/docker/frontend/types
     tty: true
   backend:
     build:
@@ -28,6 +29,7 @@ services:
       - 4000:4000
     volumes:
       - ./backend:/docker/backend
+      - ./swagger/output:/docker/backend/types
     tty: true
   swagger:
     build:
@@ -42,7 +44,7 @@ services:
   openssl:
     build:
       context: .
-      dockerfile: "./Dockerfile/OpenSSL.Dockerfile"
+      dockerfile: ./Dockerfile/OpenSSL.Dockerfile
     profiles: [ "openssl" ]
     volumes:
       - ./openssl/certs:/docker/certs

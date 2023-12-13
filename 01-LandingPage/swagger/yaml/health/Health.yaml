@@ -1,0 +1,25 @@
+get:
+  tags:
+    - health
+  summary: Health
+  description: health
+  operationId: getHealth
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: 'Schema.yaml#/components/schemas/HealthSchema'
+        application/xml:
+          schema:
+            $ref: 'Schema.yaml#/components/schemas/HealthSchema'
+    "400":
+      description: Invalid name supplied
+      content:
+        application/json:
+          schema:
+            $ref: '../error/Schema.yaml#/components/schemas/ErrorSchema'
+        application/xml:
+          schema:
+            $ref: '../error/Schema.yaml#/components/schemas/ErrorSchema'

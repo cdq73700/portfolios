@@ -9,8 +9,14 @@ tags:
   - name: profile
     description: Operations about profile
 paths:
+  /health:
+    $ref: /docker/swagger/yaml/health/Health.yaml
   /profile/{language}:
     $ref: /docker/swagger/yaml/profile/Profile.yaml
+  /cookie/language:
+    $ref: /docker/swagger/yaml/cookie/Language.yaml
+  /cookie/theme:
+    $ref: /docker/swagger/yaml/cookie/Theme.yaml
 components:
   schemas:
     Profile:

@@ -1,0 +1,10 @@
+components:
+  schemas:
+    HealthSchema:
+      type: object
+      xml:
+        name: HealthSchema
+      properties:
+        data:
+          type: string
+          example: OK

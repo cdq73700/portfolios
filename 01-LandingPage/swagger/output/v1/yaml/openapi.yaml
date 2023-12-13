@@ -9,6 +9,32 @@ tags:
 - name: profile
   description: Operations about profile
 paths:
+  /health:
+    get:
+      tags:
+      - health
+      summary: Health
+      description: health
+      operationId: getHealth
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthSchema'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/HealthSchema'
+        "400":
+          description: Invalid name supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
   /profile/{language}:
     get:
       tags:
@@ -42,6 +68,50 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+  /cookie/language:
+    post:
+      tags:
+      - cookie
+      summary: Language Cookie Issue
+      description: Issuance of language cookies
+      operationId: postLanguageCookie
+      requestBody:
+        description: Create language cookie
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LanguageCookieSchema'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+                example: Key=language; Value=en; HttpOnly; Secure;
+  /cookie/theme:
+    post:
+      tags:
+      - cookie
+      summary: Theme Cookie Issue
+      description: Issuance of theme cookies
+      operationId: postThemeCookie
+      requestBody:
+        description: Create theme cookie
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThemeCookieSchema'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+                example: Key=theme; Value=dark; HttpOnly; Secure;
 components:
   schemas:
     Profile:
@@ -76,6 +146,33 @@ components:
       description: database model
       xml:
         name: profile
+    HealthSchema:
+      type: object
+      properties:
+        data:
+          type: string
+          example: OK
+      xml:
+        name: HealthSchema
+    ErrorSchema:
+      required:
+      - code
+      - message
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+        message:
+          type: string
+          example: error
+        path:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+      xml:
+        name: errorSchema
     ProfileSchema:
       type: object
       properties:
@@ -112,22 +209,19 @@ components:
           format: date-time
       xml:
         name: profile
-    ErrorSchema:
-      required:
-      - code
-      - message
+    LanguageCookieSchema:
       type: object
       properties:
-        code:
-          type: integer
-          format: int64
-        message:
+        language:
           type: string
-          example: error
-        path:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
+          example: en
       xml:
-        name: errorSchema
+        name: LanguageCookieSchema
+    ThemeCookieSchema:
+      type: object
+      properties:
+        theme:
+          type: string
+          example: dark
+      xml:
+        name: ThemeCookieSchema

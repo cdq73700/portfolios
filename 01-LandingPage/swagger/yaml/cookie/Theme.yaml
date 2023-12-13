@@ -1,0 +1,21 @@
+post:
+  tags:
+    - cookie
+  summary: Theme Cookie Issue
+  description: Issuance of theme cookies
+  operationId: postThemeCookie
+  requestBody:
+    description: Create theme cookie 
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: 'Schema.yaml#/components/schemas/ThemeCookieSchema'
+  responses:
+    "200":
+      description: Successful operation
+      headers:
+        Set-Cookie:
+          schema:
+            type: string
+            example: Key=theme; Value=dark; HttpOnly; Secure;

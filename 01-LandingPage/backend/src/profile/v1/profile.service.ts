@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import getProfileApi from './api/getProfile.api'
-import { ProfileSchema } from 'types/v1/typescript/model/profileSchema'
-import { ProfileServiceProps } from 'types/profile/v1/profile.service.type'
+import { ProfileServiceProps } from 'src/types/profile/v1/profile.service.type'
+import { ProfileSchema } from 'swagger/v1/typescript/model/profileSchema'
 
 @Injectable()
 export class ProfileService {

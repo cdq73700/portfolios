@@ -10,9 +10,9 @@ import {
 } from '@nestjs/common'
 import { Response } from 'express'
 import { ProfileService } from './profile.service'
-import { GetProfileDto } from './dto/get-profile.dto'
-import { GetUserByIdValidationPipe } from './pipe/getProfileValidationPipe'
-import { ProfileSchema } from 'types/v1/typescript/model/profileSchema'
+import { GetUserByIdValidationPipe } from './pipe/profileValidation.pipe'
+import { GetProfileDto } from './dto/profile.dto'
+import { ProfileSchema } from 'swagger/v1/typescript/model/profileSchema'
 
 @Controller('/api/v1/profile')
 export class ProfileController {

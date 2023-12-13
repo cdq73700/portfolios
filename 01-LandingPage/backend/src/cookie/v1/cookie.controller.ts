@@ -1,9 +1,10 @@
 import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common'
 import { Response } from 'express'
-import { PostLanguageCookieValidationPipe } from './pipe/postLanguageCookieValidation.pipe'
-import { PostLanguageCookieDto } from './dto/post-language-cookie.dto'
-import { PostThemeCookieDto } from './dto/post-theme-cookie.dto'
-import { PostThemeCookieValidationPipe } from './pipe/postThemeCookieValidation.pipe'
+import {
+  PostLanguageCookieValidationPipe,
+  PostThemeCookieValidationPipe,
+} from './pipe/cookieValidation.pipe'
+import { PostLanguageCookieDto, PostThemeCookieDto } from './dto/cookie.dto'
 
 @Controller('/api/v1/cookie')
 export class CookieController {

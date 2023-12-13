@@ -4,14 +4,14 @@ import {
   BadRequestException,
   InternalServerErrorException,
 } from '@nestjs/common'
-import { PostThemeCookieDto } from '../dto/post-theme-cookie.dto'
+import { GetProfileDto } from '../dto/profile.dto'
 
 @Injectable()
-export class PostThemeCookieValidationPipe implements PipeTransform {
-  transform(value: PostThemeCookieDto) {
+export class GetUserByIdValidationPipe implements PipeTransform {
+  transform(value: GetProfileDto) {
     try {
-      if (!value.theme) {
-        return 'dark'
+      if (!value.language) {
+        throw new BadRequestException('Invalid Language supplied')
       }
       return value
     } catch (error) {

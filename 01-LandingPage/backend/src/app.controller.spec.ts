@@ -1,32 +1,22 @@
 import { Test, TestingModule } from '@nestjs/testing'
-import * as request from 'supertest'
-import { INestApplication } from '@nestjs/common'
-import { AppModule } from './app.module'
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
 
 describe('AppController', () => {
-  let app: INestApplication
+  let appController: AppController
 
-  beforeAll(async () => {
-    const moduleRef: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
+  beforeEach(async () => {
+    const app: TestingModule = await Test.createTestingModule({
+      controllers: [AppController],
+      providers: [AppService],
     }).compile()
 
-    app = moduleRef.createNestApplication()
-    await app.init()
+    appController = app.get<AppController>(AppController)
   })
 
-  describe('health', () => {
-    it('should return "OK"', () => {
-      return request(app.getHttpServer())
-        .get('/api/health')
-        .then((result) => {
-          expect(result.statusCode).toEqual(200)
-          expect(result.body).toEqual({ data: 'OK' })
-        })
+  describe('root', () => {
+    it('should return "Hello World!"', () => {
+      //expect(appController.getHealth()).toEqual({ data: 'OK' })
     })
-  })
-
-  afterAll(async () => {
-    await app.close()
   })
 })

@@ -19,7 +19,7 @@ services:
       - 3000:3000
     volumes:
       - ./frontend:/docker/frontend
-      - ./swagger/output:/docker/frontend/types
+      - ./swagger/output:/docker/frontend/swagger
     tty: true
   backend:
     build:
@@ -29,7 +29,7 @@ services:
       - 4000:4000
     volumes:
       - ./backend:/docker/backend
-      - ./swagger/output:/docker/backend/types
+      - ./swagger/output:/docker/backend/swagger
     tty: true
   swagger:
     build:

@@ -5,6 +5,7 @@ import {
   HttpException,
 } from '@nestjs/common'
 import { Request, Response } from 'express'
+import { ErrorSchema } from 'swagger/v1/typescript/model/errorSchema'
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -14,11 +15,13 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const request = ctx.getRequest<Request>()
     const status = exception.getStatus()
 
-    response.status(status).json({
+    const json: ErrorSchema = {
       code: status,
       message: exception.message,
-      timestamp: new Date().toISOString(),
+      timestamp: new Date(),
       path: request.url,
-    })
+    }
+
+    response.status(status).json(json)
   }
 }

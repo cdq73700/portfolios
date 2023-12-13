@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { HealthSchema } from 'types/v1/typescript/model/healthSchema'
+import { HealthSchema } from 'swagger/v1/typescript/model/healthSchema'
 
 @Injectable()
 export class AppService {

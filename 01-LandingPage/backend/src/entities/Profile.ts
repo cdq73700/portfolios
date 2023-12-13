@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm'
 import { PrimaryGeneratedColumnUUIDOptions } from 'typeorm/decorator/options/PrimaryGeneratedColumnUUIDOptions'
-import { Profile as ProfileType } from 'types/v1/typescript/model/profile'
+import { Profile as ProfileType } from 'swagger/v1/typescript/model/profile'
 
 const primaryGeneratedColumnOptions: PrimaryGeneratedColumnUUIDOptions &
   PrimaryColumnOptions = {

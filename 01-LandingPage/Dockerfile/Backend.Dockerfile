@@ -4,4 +4,6 @@ WORKDIR /docker/backend
 
 COPY ./backend .
 
+COPY ./swagger/output ./swagger
+
 EXPOSE 4000

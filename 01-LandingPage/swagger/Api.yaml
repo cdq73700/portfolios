@@ -1,0 +1,46 @@
+openapi: 3.0.3
+info:
+  title: Landing Page API
+  version: 1.0.0
+  description: This is Landing Page API
+servers:
+  - url: http://backend:4000/api/v1
+tags:
+  - name: profile
+    description: Operations about profile
+paths:
+  /profile/{language}:
+    $ref: /docker/swagger/yaml/profile/Profile.yaml
+components:
+  schemas:
+    Profile:
+      description: database model
+      type: object
+      required: [language]
+      xml:
+        name: profile
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        tel:
+          type: string
+        post:
+          type: string
+        address:
+          type: string
+        language:
+          type: string
+        isActive:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time

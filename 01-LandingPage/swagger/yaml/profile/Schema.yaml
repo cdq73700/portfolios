@@ -1,0 +1,37 @@
+components:
+  schemas:
+    ResponseProfileSchema:
+      type: object
+      required: [language]
+      xml:
+        name: profile
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        tel:
+          type: string
+        post:
+          type: string
+        address:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    ProfileSchema:
+      type: object
+      xml:
+        name: ProfileSchema
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseProfileSchema'

@@ -1,0 +1,133 @@
+openapi: 3.0.3
+info:
+  title: Landing Page API
+  description: This is Landing Page API
+  version: 1.0.0
+servers:
+- url: http://backend:4000/api/v1
+tags:
+- name: profile
+  description: Operations about profile
+paths:
+  /profile/{language}:
+    get:
+      tags:
+      - profile
+      summary: Get Profile
+      description: Returns a list profile
+      operationId: getProfile
+      parameters:
+      - name: language
+        in: path
+        description: language of profile to return
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileSchema'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProfileSchema'
+        "400":
+          description: Invalid name supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+components:
+  schemas:
+    Profile:
+      required:
+      - language
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        tel:
+          type: string
+        post:
+          type: string
+        address:
+          type: string
+        language:
+          type: string
+        isActive:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      description: database model
+      xml:
+        name: profile
+    ProfileSchema:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseProfileSchema'
+      xml:
+        name: ProfileSchema
+    ResponseProfileSchema:
+      required:
+      - language
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        tel:
+          type: string
+        post:
+          type: string
+        address:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      xml:
+        name: profile
+    ErrorSchema:
+      required:
+      - code
+      - message
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+        message:
+          type: string
+          example: error
+        path:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+      xml:
+        name: errorSchema

@@ -1,9 +1,9 @@
 /**
- * PostLanguageCookieDto
+ * HeadLanguageCookieDto
  */
 export type Language = 'en' | 'ja'
 
 /**
- * PostThemeCookieDto
+ * HeadThemeCookieDto
  */
 export type Theme = 'light' | 'dark'

@@ -22,7 +22,7 @@ export class CookieController {
   }
 
   @Head('/theme/:theme')
-  postThemeCookie(
+  headThemeCookie(
     @Param(HeadThemeCookieValidationPipe)
     headThemeCookieDto: HeadThemeCookieDto,
     @Res() res: Response

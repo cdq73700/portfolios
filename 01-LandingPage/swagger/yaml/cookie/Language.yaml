@@ -1,16 +1,16 @@
-post:
+head:
   tags:
     - cookie
   summary: Language Cookie Issue
   description: Issuance of language cookies
-  operationId: postLanguageCookie
-  requestBody:
-    description: Create language cookie 
-    required: true
-    content:
-      application/json:
-        schema:
-          $ref: 'Schema.yaml#/components/schemas/LanguageCookieSchema'
+  operationId: headLanguageCookie
+  parameters:
+    - in: path
+      name: language
+      description: language cookie to return
+      required: true
+      schema:
+        type: string
   responses:
     "200":
       description: Successful operation

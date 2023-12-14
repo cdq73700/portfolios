@@ -1,36 +1,36 @@
-import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common'
+import { Controller, Head, HttpStatus, Param, Res } from '@nestjs/common'
 import { Response } from 'express'
 import {
-  PostLanguageCookieValidationPipe,
-  PostThemeCookieValidationPipe,
+  HeadLanguageCookieValidationPipe,
+  HeadThemeCookieValidationPipe,
 } from './pipe/cookieValidation.pipe'
-import { PostLanguageCookieDto, PostThemeCookieDto } from './dto/cookie.dto'
+import { HeadLanguageCookieDto, HeadThemeCookieDto } from './dto/cookie.dto'
 
 @Controller('/api/v1/cookie')
 export class CookieController {
-  @Post('/language')
-  postLanguageCookie(
-    @Body(PostLanguageCookieValidationPipe)
-    postLanguageCookieDto: PostLanguageCookieDto,
+  @Head('/language/:language')
+  headLanguageCookie(
+    @Param(HeadLanguageCookieValidationPipe)
+    headLanguageCookieDto: HeadLanguageCookieDto,
     @Res() res: Response
   ) {
-    const { language } = postLanguageCookieDto
+    const { language } = headLanguageCookieDto
     res
       .status(HttpStatus.OK)
       .cookie('language', language, { httpOnly: true, secure: true })
-      .json({})
+      .send()
   }
 
-  @Post('/theme')
+  @Head('/theme/:theme')
   postThemeCookie(
-    @Body(PostThemeCookieValidationPipe)
-    postThemeCookieDto: PostThemeCookieDto,
+    @Param(HeadThemeCookieValidationPipe)
+    headThemeCookieDto: HeadThemeCookieDto,
     @Res() res: Response
   ) {
-    const { theme } = postThemeCookieDto
+    const { theme } = headThemeCookieDto
     res
       .status(HttpStatus.OK)
       .cookie('theme', theme, { httpOnly: true, secure: true })
-      .json({})
+      .send()
   }
 }

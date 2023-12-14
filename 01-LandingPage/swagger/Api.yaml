@@ -13,9 +13,9 @@ paths:
     $ref: /docker/swagger/yaml/health/Health.yaml
   /profile/{language}:
     $ref: /docker/swagger/yaml/profile/Profile.yaml
-  /cookie/language:
+  /cookie/language/{language}:
     $ref: /docker/swagger/yaml/cookie/Language.yaml
-  /cookie/theme:
+  /cookie/theme/{theme}:
     $ref: /docker/swagger/yaml/cookie/Theme.yaml
 components:
   schemas:

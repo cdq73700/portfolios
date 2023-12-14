@@ -68,20 +68,20 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
-  /cookie/language:
-    post:
+  /cookie/language/{language}:
+    head:
       tags:
       - cookie
       summary: Language Cookie Issue
       description: Issuance of language cookies
-      operationId: postLanguageCookie
-      requestBody:
-        description: Create language cookie
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/LanguageCookieSchema'
+      operationId: headLanguageCookie
+      parameters:
+      - name: language
+        in: path
+        description: language cookie to return
         required: true
+        schema:
+          type: string
       responses:
         "200":
           description: Successful operation
@@ -90,20 +90,20 @@ paths:
               schema:
                 type: string
                 example: Key=language; Value=en; HttpOnly; Secure;
-  /cookie/theme:
-    post:
+  /cookie/theme/{theme}:
+    head:
       tags:
       - cookie
       summary: Theme Cookie Issue
       description: Issuance of theme cookies
-      operationId: postThemeCookie
-      requestBody:
-        description: Create theme cookie
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ThemeCookieSchema'
+      operationId: headThemeCookie
+      parameters:
+      - name: theme
+        in: path
+        description: theme cookie to return
         required: true
+        schema:
+          type: string
       responses:
         "200":
           description: Successful operation
@@ -209,19 +209,3 @@ components:
           format: date-time
       xml:
         name: profile
-    LanguageCookieSchema:
-      type: object
-      properties:
-        language:
-          type: string
-          example: en
-      xml:
-        name: LanguageCookieSchema
-    ThemeCookieSchema:
-      type: object
-      properties:
-        theme:
-          type: string
-          example: dark
-      xml:
-        name: ThemeCookieSchema

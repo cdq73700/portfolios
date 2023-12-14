@@ -4,11 +4,11 @@ import {
   InternalServerErrorException,
   PipeTransform,
 } from '@nestjs/common'
-import { PostLanguageCookieDto, PostThemeCookieDto } from '../dto/cookie.dto'
+import { HeadLanguageCookieDto, HeadThemeCookieDto } from '../dto/cookie.dto'
 
 @Injectable()
-export class PostLanguageCookieValidationPipe implements PipeTransform {
-  transform(value: PostLanguageCookieDto) {
+export class HeadLanguageCookieValidationPipe implements PipeTransform {
+  transform(value: HeadLanguageCookieDto) {
     try {
       if (!value.language) {
         return 'en'
@@ -25,8 +25,8 @@ export class PostLanguageCookieValidationPipe implements PipeTransform {
 }
 
 @Injectable()
-export class PostThemeCookieValidationPipe implements PipeTransform {
-  transform(value: PostThemeCookieDto) {
+export class HeadThemeCookieValidationPipe implements PipeTransform {
+  transform(value: HeadThemeCookieDto) {
     try {
       if (!value.theme) {
         return 'dark'

@@ -7,10 +7,7 @@ import { LanguageSelectBoxActionProps } from '@/types/components/SelectBox/Langu
 export default async function LanguageSelectBoxAction({ language }: LanguageSelectBoxActionProps) {
   const res = await CookieIssue({
     name: 'language',
-    body: {
-      key: 'lang',
-      value: language ?? 'en',
-    },
+    parameter: language ?? 'en',
   })
   await SetCookie({ cookie: res.headers.getSetCookie()[0] })
 }

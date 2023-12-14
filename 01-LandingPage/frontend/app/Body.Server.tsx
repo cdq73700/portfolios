@@ -21,7 +21,7 @@ export default async function BodyServer({ children }: BodyServerProps) {
       init: 'en',
     },
     {
-      name: 'mode',
+      name: 'theme',
       init: 'dark',
     },
   ]

@@ -3,7 +3,7 @@
 import { CookieIssueProps, FetchApiProps, GetJsonProps } from '@/types/lib/api/Api.Type'
 
 async function FetchApi({ path, init }: FetchApiProps) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${path}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/${path}`, {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
@@ -35,14 +35,14 @@ async function GetProfile(lang: string) {
   return json
 }
 
-async function CookieIssue({ name, body }: CookieIssueProps) {
+async function CookieIssue({ name, parameter }: CookieIssueProps) {
   const params: FetchApiProps = {
-    path: name,
+    path: `cookie/${name}/${parameter}`,
     init: {
-      method: body ? 'POST' : 'GET',
-      body: body ? JSON.stringify({ [body.key]: body.value }) : undefined,
+      method: 'HEAD',
       credentials: 'include',
       cache: 'no-cache',
+      next: { tags: ['cookie'] },
     },
   }
   const res = await FetchApi(params)

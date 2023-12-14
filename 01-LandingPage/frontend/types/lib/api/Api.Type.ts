@@ -1,3 +1,5 @@
+import { Language, Theme } from '@/types/Application.Type'
+
 /**
  * api
  */
@@ -12,8 +14,5 @@ export type GetJsonProps = {
 
 export type CookieIssueProps = {
   name: string
-  body?: {
-    key: string
-    value: string
-  }
+  parameter: Language | Theme
 }

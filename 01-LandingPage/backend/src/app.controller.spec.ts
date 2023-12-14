@@ -1,6 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
+import { Response } from 'express'
+import { HttpStatus } from '@nestjs/common'
 
 describe('AppController', () => {
   let appController: AppController
@@ -14,9 +16,15 @@ describe('AppController', () => {
     appController = app.get<AppController>(AppController)
   })
 
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
-      //expect(appController.getHealth()).toEqual({ data: 'OK' })
+  describe('health', () => {
+    it('should return "OK"', () => {
+      const responseMock = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      } as unknown as Response
+      appController.getHealth(responseMock)
+      expect(responseMock.status).toHaveBeenCalledWith(HttpStatus.OK)
+      expect(responseMock.json).toHaveBeenCalledWith({ data: 'OK' })
     })
   })
 })

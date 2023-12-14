@@ -1,12 +1,11 @@
 import { IsString } from 'class-validator'
-import { Language, Theme } from 'src/types/cookie/v1/dto/cookie.dto.type'
 
 export class HeadLanguageCookieDto {
   @IsString()
-  language: Language
+  language: string
 }
 
 export class HeadThemeCookieDto {
   @IsString()
-  theme: Theme
+  theme: string
 }

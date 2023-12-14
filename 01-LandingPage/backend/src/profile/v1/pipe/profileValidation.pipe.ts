@@ -1,25 +1,13 @@
-import {
-  PipeTransform,
-  Injectable,
-  BadRequestException,
-  InternalServerErrorException,
-} from '@nestjs/common'
+import { PipeTransform, Injectable } from '@nestjs/common'
 import { GetProfileDto } from '../dto/profile.dto'
 
 @Injectable()
 export class GetUserByIdValidationPipe implements PipeTransform {
   transform(value: GetProfileDto) {
-    try {
-      if (!value.language) {
-        throw new BadRequestException('Invalid Language supplied')
-      }
-      return value
-    } catch (error) {
-      if (error instanceof BadRequestException) {
-        throw error
-      } else {
-        throw new InternalServerErrorException(error)
-      }
+    // サポートする言語以外の場合、デフォルトとして "en" を設定
+    if (!value || !(value.language === 'en' || value.language === 'ja')) {
+      return { language: 'en' }
     }
+    return value
   }
 }

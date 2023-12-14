@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing'
-import { INestApplication } from '@nestjs/common'
+import { HttpStatus, INestApplication } from '@nestjs/common'
 import * as request from 'supertest'
 import { AppModule } from './../src/app.module'
 
@@ -18,7 +18,7 @@ describe('AppController (e2e)', () => {
   describe('health', () => {
     it('/api/v1/health (GET)', async () => {
       const response = await request(app.getHttpServer()).get('/api/v1/health')
-      expect(response.statusCode).toEqual(200)
+      expect(response.status).toEqual(HttpStatus.OK)
       expect(response.body).toEqual({ data: 'OK' })
     })
   })

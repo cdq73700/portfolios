@@ -31,6 +31,9 @@ components:
       xml:
         name: ProfileSchema
       properties:
+        success:
+          type: boolean
+          example: true
         data:
           type: array
           items:

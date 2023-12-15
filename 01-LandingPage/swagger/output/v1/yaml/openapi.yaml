@@ -149,6 +149,9 @@ components:
     HealthSchema:
       type: object
       properties:
+        success:
+          type: boolean
+          example: true
         data:
           type: string
           example: OK
@@ -160,22 +163,19 @@ components:
       - message
       type: object
       properties:
-        code:
-          type: integer
-          format: int64
-        message:
-          type: string
-          example: error
-        path:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
+        success:
+          type: boolean
+          example: false
+        error:
+          $ref: '#/components/schemas/ErrorSchema_error'
       xml:
         name: errorSchema
     ProfileSchema:
       type: object
       properties:
+        success:
+          type: boolean
+          example: true
         data:
           type: array
           items:
@@ -209,3 +209,17 @@ components:
           format: date-time
       xml:
         name: profile
+    ErrorSchema_error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+        message:
+          type: string
+          example: error
+        path:
+          type: string
+        timestamp:
+          type: string
+          format: date-time

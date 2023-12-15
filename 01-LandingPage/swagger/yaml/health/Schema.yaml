@@ -5,6 +5,9 @@ components:
       xml:
         name: HealthSchema
       properties:
+        success:
+          type: boolean
+          example: true
         data:
           type: string
           example: OK

@@ -9,9 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { ErrorSchemaError } from './errorSchemaError';
 
-export interface ErrorSchema { 
-    success?: boolean;
-    error?: ErrorSchemaError;
+export interface ErrorSchemaError { 
+    code?: number;
+    message?: string;
+    path?: string;
+    timestamp?: Date;
 }

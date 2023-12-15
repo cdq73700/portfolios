@@ -6,16 +6,22 @@ components:
         - code
         - message
       properties:
-        code:
-          type: integer
-          format: int64
-        message:
-          type: string
-          example: error
-        path:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
+        success:
+          type: boolean
+          example: false
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              format: int64
+            message:
+              type: string
+              example: error
+            path:
+              type: string
+            timestamp:
+              type: string
+              format: date-time
       xml:
         name: errorSchema

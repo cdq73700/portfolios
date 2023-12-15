@@ -16,10 +16,13 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const status = exception.getStatus()
 
     const json: ErrorSchema = {
-      code: status,
-      message: exception.message,
-      timestamp: new Date(),
-      path: request.url,
+      success: false,
+      error: {
+        code: status,
+        message: exception.message,
+        timestamp: new Date(),
+        path: request.url,
+      },
     }
 
     response.status(status).json(json)

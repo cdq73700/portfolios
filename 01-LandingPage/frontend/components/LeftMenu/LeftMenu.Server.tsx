@@ -8,7 +8,7 @@ import { Box } from '@mui/material'
 
 export default async function LeftMenuServer() {
   const profile: Inbox = {
-    href: '/{language}/profile',
+    href: '/profile',
     icon: <Home></Home>,
     value: 'profile',
   }

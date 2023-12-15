@@ -10,7 +10,7 @@ export default async function HeaderServer() {
       value: 'HEADER',
     },
     {
-      key: '/{language}/profile',
+      key: '/profile',
       value: 'profile',
     },
   ]

@@ -24,7 +24,7 @@ describe('ProfileController (e2e)', () => {
         `/api/v1/profile/${language}`
       )
       expect(response.status).toEqual(HttpStatus.OK)
-      expect(response.body).toHaveProperty('data')
+      expect(response.body.success).toBe(true)
       expect(response.body.data.length).toBe(1)
       expect(response.body.data[0]).toHaveProperty('id')
       expect(response.body.data[0].language).toBe(language)
@@ -36,7 +36,7 @@ describe('ProfileController (e2e)', () => {
         `/api/v1/profile/${language}`
       )
       expect(response.status).toEqual(HttpStatus.OK)
-      expect(response.body).toHaveProperty('data')
+      expect(response.body.success).toBe(true)
       expect(response.body.data.length).toBe(1)
       expect(response.body.data[0]).toHaveProperty('id')
       expect(response.body.data[0].language).toBe(language)
@@ -48,7 +48,7 @@ describe('ProfileController (e2e)', () => {
         `/api/v1/profile/${language}`
       )
       expect(response.status).toEqual(HttpStatus.OK)
-      expect(response.body).toHaveProperty('data')
+      expect(response.body.success).toBe(true)
       expect(response.body.data.length).toBe(1)
       expect(response.body.data[0]).toHaveProperty('id')
       expect(response.body.data[0].language).toBe('en')
@@ -60,7 +60,7 @@ describe('ProfileController (e2e)', () => {
         `/api/v1/profile/${language}`
       )
       expect(response.status).toEqual(HttpStatus.OK)
-      expect(response.body).toHaveProperty('data')
+      expect(response.body.success).toBe(true)
       expect(response.body.data.length).toBe(1)
       expect(response.body.data[0]).toHaveProperty('id')
       expect(response.body.data[0].language).toBe('en')

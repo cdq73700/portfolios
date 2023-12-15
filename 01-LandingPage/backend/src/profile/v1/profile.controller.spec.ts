@@ -32,7 +32,7 @@ describe('ProfileController', () => {
       await profileController.GetProfile(inputDto, responseMock)
       expect(responseMock.status).toHaveBeenCalledWith(HttpStatus.OK)
       const jsonData = (responseMock.json as jest.Mock).mock.calls[0][0]
-      expect(jsonData).toHaveProperty('data')
+      expect(jsonData.success).toBe(true)
       expect(jsonData.data.length).toBe(1)
       expect(jsonData.data[0]).toHaveProperty('id')
       expect(jsonData.data[0].language).toBe(inputDto.language)
@@ -47,7 +47,7 @@ describe('ProfileController', () => {
       await profileController.GetProfile(inputDto, responseMock)
       expect(responseMock.status).toHaveBeenCalledWith(HttpStatus.OK)
       const jsonData = (responseMock.json as jest.Mock).mock.calls[0][0]
-      expect(jsonData).toHaveProperty('data')
+      expect(jsonData.success).toBe(true)
       expect(jsonData.data.length).toBe(1)
       expect(jsonData.data[0]).toHaveProperty('id')
       expect(jsonData.data[0].language).toBe(inputDto.language)

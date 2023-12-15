@@ -24,7 +24,10 @@ describe('AppController', () => {
       } as unknown as Response
       appController.getHealth(responseMock)
       expect(responseMock.status).toHaveBeenCalledWith(HttpStatus.OK)
-      expect(responseMock.json).toHaveBeenCalledWith({ data: 'OK' })
+      expect(responseMock.json).toHaveBeenCalledWith({
+        success: true,
+        data: 'OK',
+      })
     })
   })
 })

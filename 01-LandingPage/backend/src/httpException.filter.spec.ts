@@ -39,10 +39,13 @@ describe('HttpExceptionFilter', () => {
     const responseMock = host.switchToHttp().getResponse<Response>()
     expect(responseMock.status).toHaveBeenCalledWith(HttpStatus.NOT_FOUND)
     expect(responseMock.json).toHaveBeenCalledWith({
-      code: HttpStatus.NOT_FOUND,
-      message: 'Test exception message',
-      timestamp: expect.any(Date),
-      path: '/test-url',
+      success: false,
+      error: {
+        code: HttpStatus.NOT_FOUND,
+        message: 'Test exception message',
+        timestamp: expect.any(Date),
+        path: '/test-url',
+      },
     })
   })
 })

@@ -11,5 +11,6 @@
  */
 
 export interface HealthSchema { 
+    success?: boolean;
     data?: string;
 }

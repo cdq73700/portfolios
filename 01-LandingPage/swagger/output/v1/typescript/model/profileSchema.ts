@@ -12,5 +12,6 @@
 import { ResponseProfileSchema } from './responseProfileSchema';
 
 export interface ProfileSchema { 
+    success?: boolean;
     data?: Array<ResponseProfileSchema>;
 }

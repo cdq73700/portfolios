@@ -203,10 +203,10 @@ components:
           type: string
         createdAt:
           type: string
-          format: date-time
+          example: 2023/12/13 8:39:04
         updatedAt:
           type: string
-          format: date-time
+          example: 2023/12/13 8:39:04
       xml:
         name: profile
     ErrorSchema_error:
@@ -222,4 +222,4 @@ components:
           type: string
         timestamp:
           type: string
-          format: date-time
+          example: 2023/12/13 8:39:04

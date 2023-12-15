@@ -14,5 +14,5 @@ export interface ErrorSchemaError {
     code?: number;
     message?: string;
     path?: string;
-    timestamp?: Date;
+    timestamp?: string;
 }

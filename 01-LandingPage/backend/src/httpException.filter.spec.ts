@@ -43,7 +43,7 @@ describe('HttpExceptionFilter', () => {
       error: {
         code: HttpStatus.NOT_FOUND,
         message: 'Test exception message',
-        timestamp: expect.any(Date),
+        timestamp: expect.any(String),
         path: '/test-url',
       },
     })

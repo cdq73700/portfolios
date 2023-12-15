@@ -17,6 +17,6 @@ export interface ResponseProfileSchema {
     tel?: string;
     post?: string;
     address?: string;
-    createdAt?: Date;
-    updatedAt?: Date;
+    createdAt?: string;
+    updatedAt?: string;
 }

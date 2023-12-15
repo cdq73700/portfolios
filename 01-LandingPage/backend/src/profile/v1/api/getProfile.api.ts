@@ -12,5 +12,12 @@ export default async function getProfileApi({
   const data: Array<ProfileType> = await repository.find({
     where: { language },
   })
-  return { success: true, data }
+
+  const transData = data.map((item) => {
+    const createdAt = item.createdAt.toLocaleString(item.language)
+    const updatedAt = item.updatedAt.toLocaleString(item.language)
+    return { ...item, createdAt, updatedAt }
+  })
+
+  return { success: true, data: transData }
 }

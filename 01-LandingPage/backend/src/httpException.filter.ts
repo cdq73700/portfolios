@@ -20,7 +20,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       error: {
         code: status,
         message: exception.message,
-        timestamp: new Date(),
+        timestamp: new Date().toString(),
         path: request.url,
       },
     }

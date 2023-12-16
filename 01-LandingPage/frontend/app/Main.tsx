@@ -1,3 +1,5 @@
+'use client'
+
 import MarkDown from '@/components/MarkDown'
 
 export default function Home() {
@@ -5,6 +7,7 @@ export default function Home() {
     id: 'Main',
     title: 'Main',
     body: 'Main',
+    keyPrefix: '',
   }
   const body = 'Main'
   return (

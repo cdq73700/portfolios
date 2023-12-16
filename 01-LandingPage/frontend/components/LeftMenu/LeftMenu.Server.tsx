@@ -17,7 +17,7 @@ export default async function LeftMenuServer() {
     value: 'inbox',
     inbox: [
       {
-        href: '/{language}/cat',
+        href: '/cat',
         icon: <Box>🐈</Box>,
         value: 'cat',
       },

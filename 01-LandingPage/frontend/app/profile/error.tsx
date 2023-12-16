@@ -1,9 +1,9 @@
 'use client'
 
-import { ErrorSchemaError } from '@/swagger/v1/typescript/model/errorSchemaError'
+import { ErrorProps } from '@/types/app/profile/error.Type'
 import { Stack, Typography } from '@mui/material'
 
-export default function Error({ error }: { error: ErrorSchemaError }) {
+export default function Error({ error }: ErrorProps) {
   const { code, message, path, timestamp } = error
   const date = new Date(timestamp ?? Date.now()).toLocaleString()
   return (

@@ -10,14 +10,5 @@ export type Inbox = {
  * RightMenuClient
  */
 export type RightMenuClientProps = {
-  params: {
-    inbox: Array<Inbox>
-  }
-}
-
-/**
- * RightMenuWrapper
- */
-export type RightMenuWrapperProps = {
   children: React.ReactNode
 }

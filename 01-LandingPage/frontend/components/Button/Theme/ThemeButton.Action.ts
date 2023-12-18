@@ -2,9 +2,9 @@
 
 import { CookieIssue } from '@/lib/api/api'
 import { SetCookie } from '@/lib/cookies'
-import { ModeButtonActionProps } from '@/types/components/Button/Mode.Type'
+import { ThemeButtonActionProps } from '@/types/components/Button/Theme.Type'
 
-export default async function ModeButtonAction({ theme }: ModeButtonActionProps) {
+export default async function ThemeButtonAction({ theme }: ThemeButtonActionProps) {
   const res = await CookieIssue({
     name: 'theme',
     parameter: theme ?? 'dark',

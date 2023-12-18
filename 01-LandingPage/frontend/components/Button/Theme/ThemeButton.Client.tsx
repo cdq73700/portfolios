@@ -1,11 +1,11 @@
 'use client'
 
 import { Theme } from '@/types/Application.Type'
-import { ModeButtonClientProps } from '@/types/components/Button/Mode.Type'
+import { ThemeButtonClientProps } from '@/types/components/Button/Theme.Type'
 import { Button, ButtonGroup } from '@mui/material'
 import { useCallback } from 'react'
 
-export default function ModeButtonClient({ params, action }: ModeButtonClientProps) {
+export default function ThemeButtonClient({ params, action }: ThemeButtonClientProps) {
   const { themes } = params
   const ChangeThemeCallback = useCallback(
     async (theme: Theme) => {

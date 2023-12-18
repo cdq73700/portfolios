@@ -21,11 +21,6 @@ export default async function LeftMenuServer() {
         icon: <Box>🐈</Box>,
         value: 'cat',
       },
-      {
-        href: '/{language}/dog',
-        icon: <Box>🐕</Box>,
-        value: 'dog',
-      },
     ],
   }
 

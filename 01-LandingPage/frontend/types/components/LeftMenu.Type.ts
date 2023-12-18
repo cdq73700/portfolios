@@ -1,5 +1,4 @@
 import { ReactElement } from 'react'
-import { Language } from '../Application.Type'
 
 /**
  * LeftMenuServer
@@ -23,13 +22,12 @@ export type LeftMenuClientProps = {
 export type ListItemProps = {
   params: {
     inbox: Inbox
-    language: Language
+    listItemButtonProps: Object
   }
 }
 
 export type ListItemGroupProps = {
   params: {
     inbox: Inbox
-    language: Language
   }
 }

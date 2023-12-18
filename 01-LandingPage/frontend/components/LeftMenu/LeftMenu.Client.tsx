@@ -4,14 +4,13 @@ import { ExpandLess, ExpandMore } from '@mui/icons-material'
 import { Box, Collapse, List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import { useCallback, useContext, useState } from 'react'
 import HeaderContext from '../Header/Header.Context'
-import { useSelector } from 'react-redux'
 import { LeftMenuClientProps, ListItemGroupProps, ListItemProps } from '@/types/components/LeftMenu.Type'
 
 function ListItem({ params }: ListItemProps) {
-  const { inbox, language } = params
+  const { inbox, listItemButtonProps } = params
   const { href, icon, value } = inbox
   return (
-    <ListItemButton href={href ? href.replace('{language}', language) : ''}>
+    <ListItemButton data-testid={value} href={href ?? ''} {...listItemButtonProps}>
       <ListItemIcon>{icon}</ListItemIcon>
       <ListItemText primary={value}></ListItemText>
     </ListItemButton>
@@ -19,7 +18,7 @@ function ListItem({ params }: ListItemProps) {
 }
 
 function ListItemGroup({ params }: ListItemGroupProps) {
-  const { inbox: paramInbox, language } = params
+  const { inbox: paramInbox } = params
   const { icon, value, inbox } = paramInbox
   const [open, setOpen] = useState(false)
   const handleClick = useCallback(() => {
@@ -28,7 +27,7 @@ function ListItemGroup({ params }: ListItemGroupProps) {
 
   return (
     <>
-      <ListItemButton onClick={handleClick}>
+      <ListItemButton onClick={handleClick} data-testid={value}>
         <ListItemIcon>{icon}</ListItemIcon>
         <ListItemText primary={value}></ListItemText>
         {open ? <ExpandLess /> : <ExpandMore />}
@@ -37,18 +36,8 @@ function ListItemGroup({ params }: ListItemGroupProps) {
         <List component="div" disablePadding>
           {inbox &&
             inbox.map(({ href, icon, value }, index) => {
-              return (
-                <ListItemButton
-                  key={index}
-                  style={{ paddingLeft: '2.5rem' }}
-                  href={href ? href.replace('{language}', language) : ''}
-                >
-                  <ListItemIcon>
-                    <Box>{icon}</Box>
-                  </ListItemIcon>
-                  <ListItemText primary={value} />
-                </ListItemButton>
-              )
+              const params = { inbox: { href, icon, value }, listItemButtonProps: { style: { paddingLeft: '2.5rem' } } }
+              return <ListItem key={index} params={params}></ListItem>
             })}
         </List>
       </Collapse>
@@ -59,7 +48,7 @@ function ListItemGroup({ params }: ListItemGroupProps) {
 export default function LeftMenuClient({ params }: LeftMenuClientProps) {
   const { list } = params
   const { anchor } = useContext(HeaderContext)
-  const { language } = useSelector(({ application }) => application)
+
   if (anchor !== 'left') return <></>
   return (
     <>
@@ -68,9 +57,9 @@ export default function LeftMenuClient({ params }: LeftMenuClientProps) {
           return (
             <Box key={index}>
               {item.inbox ? (
-                <ListItemGroup params={{ inbox: item, language }}></ListItemGroup>
+                <ListItemGroup params={{ inbox: item }}></ListItemGroup>
               ) : (
-                <ListItem params={{ inbox: item, language }}></ListItem>
+                <ListItem params={{ inbox: item, listItemButtonProps: {} }}></ListItem>
               )}
             </Box>
           )

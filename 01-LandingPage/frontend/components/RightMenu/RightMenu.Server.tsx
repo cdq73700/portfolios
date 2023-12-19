@@ -21,7 +21,7 @@ export default async function RightMenuServer() {
     <RightMenuClient>
       {inbox.map(({ label, value }, index) => {
         return (
-          <Box key={index}>
+          <Box key={index} data-testid={label}>
             <p>{label}</p>
             {value}
           </Box>

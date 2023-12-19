@@ -5,9 +5,10 @@ import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 import { userEvent } from '@testing-library/user-event'
 import { render, screen, waitFor } from '@testing-library/react'
 import LeftMenuServer from '@/components/LeftMenu/LeftMenu.Server'
-import HeaderContext from '@/components/Header/Header.Context'
 import { HeaderContextProps } from '@/types/components/Header.Type'
-import { useContext } from 'react'
+import { Anchor } from '@/types/Application.Type'
+
+let leftMenuServer
 
 const headerContext: HeaderContextProps = {
   open: false,
@@ -25,18 +26,16 @@ const openState = {
   },
 }
 
-describe('LeftMenu', () => {
-  const context = useContext(HeaderContext)
+describe('LeftMenu', async () => {
+  const { rerender } = render(<></>)
   beforeAll(async () => {
-    context.DrawerStateChange({ newOpen: true, newAnchor: 'left' })
-    const leftMenuServer = await LeftMenuServer()
-    render(leftMenuServer)
-
     vi.mock('react', async () => {
       const actual = await vi.importActual('react')
       return {
         ...actual,
-        useContext: vi.fn(() => headerContext),
+        useContext: vi.fn(() => {
+          return headerContext
+        }),
         createContext: vi.fn(),
         useState: vi.fn(() => [openState.open, openState.setOpen]),
         useCallback: vi.fn(() => {
@@ -46,11 +45,38 @@ describe('LeftMenu', () => {
     })
   })
 
-  beforeEach(() => {
+  beforeEach(async () => {
+    headerContext.DrawerStateChange({ newOpen: true, newAnchor: 'left' })
     openState.setOpen(false)
+    leftMenuServer = await LeftMenuServer()
+    rerender(leftMenuServer)
   })
 
-  test('LeftMenuServer renders LeftMenuClient', () => {
+  test('Do not render when "open" is "false"', async () => {
+    const anchorList: Array<Anchor> = ['right', 'left', 'top', 'bottom']
+    anchorList.map(async (item) => {
+      headerContext.DrawerStateChange({ newOpen: false, newAnchor: item })
+      leftMenuServer = await LeftMenuServer()
+      rerender(leftMenuServer)
+
+      const profile = screen.queryByTestId('profile')
+      expect(profile).toBeNull()
+    })
+  })
+
+  test('Do not render when "anchor" is other than "right"', () => {
+    const anchorList: Array<Anchor> = ['right', 'top', 'bottom']
+    anchorList.map(async (anchor) => {
+      headerContext.DrawerStateChange({ newOpen: true, newAnchor: anchor })
+      leftMenuServer = await LeftMenuServer()
+      rerender(leftMenuServer)
+
+      const profile = screen.queryByTestId('profile')
+      expect(profile).toBeNull()
+    })
+  })
+
+  test('LeftMenuServer renders LeftMenuClient', async () => {
     const profile = screen.getByTestId('profile')
     expect(profile).toBeDefined()
 

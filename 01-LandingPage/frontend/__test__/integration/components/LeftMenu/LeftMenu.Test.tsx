@@ -33,9 +33,7 @@ describe('LeftMenu', async () => {
       const actual = await vi.importActual('react')
       return {
         ...actual,
-        useContext: vi.fn(() => {
-          return headerContext
-        }),
+        useContext: vi.fn(() => headerContext),
         createContext: vi.fn(),
         useState: vi.fn(() => [openState.open, openState.setOpen]),
         useCallback: vi.fn(() => {

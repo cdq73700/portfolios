@@ -47,9 +47,9 @@ function ListItemGroup({ params }: ListItemGroupProps) {
 
 export default function LeftMenuClient({ params }: LeftMenuClientProps) {
   const { list } = params
-  const { anchor } = useContext(HeaderContext)
+  const { open, anchor } = useContext(HeaderContext)
 
-  if (anchor !== 'left') return <></>
+  if (open === false || anchor !== 'left') return <></>
   return (
     <>
       <List>

@@ -62,7 +62,7 @@ describe('LeftMenu', async () => {
     })
   })
 
-  test('Do not render when "anchor" is other than "right"', () => {
+  test('Do not render when "anchor" is other than "left"', () => {
     const anchorList: Array<Anchor> = ['right', 'top', 'bottom']
     anchorList.map(async (anchor) => {
       headerContext.DrawerStateChange({ newOpen: true, newAnchor: anchor })

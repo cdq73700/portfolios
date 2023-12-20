@@ -65,8 +65,8 @@ describe('LeftMenu', async () => {
       rightMenuServer = await RightMenuServer()
       rerender(rightMenuServer)
 
-      const profile = screen.queryByTestId('profile')
-      expect(profile).toBeNull()
+      const themeElement = screen.queryByText('Theme')
+      expect(themeElement).toBeNull()
     })
   })
 
@@ -77,8 +77,8 @@ describe('LeftMenu', async () => {
       rightMenuServer = await RightMenuServer()
       rerender(rightMenuServer)
 
-      const profile = screen.queryByTestId('profile')
-      expect(profile).toBeNull()
+      const themeElement = screen.queryByText('Theme')
+      expect(themeElement).toBeNull()
     })
   })
 

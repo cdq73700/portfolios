@@ -7,16 +7,20 @@ import Link from 'next/link'
 import { useContext } from 'react'
 import HeaderContext from './Header.Context'
 import { DrawerStateChangeProps, HeaderClientProps } from '@/types/components/Header.Type'
+import styles from '@/styles/components/Header.Styles.module.css'
 
 export default function HeaderClient({ params }: HeaderClientProps) {
   const { inbox } = params
   const { DrawerStateChange } = useContext(HeaderContext)
+  const { Header } = styles
+
   return (
     <>
       <Box flexGrow={1}>
-        <AppBar position="fixed" className="Header" data-testid="Header">
+        <AppBar position="fixed" sx={{ backgroundColor: 'unset' }} className={Header} data-testid="Header">
           <Toolbar>
             <IconButton
+              sx={{ color: 'initial' }}
               data-testid="Menu"
               onClick={() => {
                 const drawer: DrawerStateChangeProps = { newOpen: true, newAnchor: 'left' }
@@ -39,6 +43,7 @@ export default function HeaderClient({ params }: HeaderClientProps) {
               </Grid>
             </Box>
             <IconButton
+              sx={{ color: 'initial' }}
               data-testid="Settings"
               onClick={() => {
                 const drawer: DrawerStateChangeProps = { newOpen: true, newAnchor: 'right' }

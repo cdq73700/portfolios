@@ -7,12 +7,14 @@ import HeaderContext from '../Header/Header.Context'
 import SideMenuWrapper from './SideMenu.Wrapper'
 import { SideMenuClientProps } from '@/types/components/SideMenu.Type'
 import { DrawerStateChangeProps } from '@/types/components/Header.Type'
+import styles from '@/styles/components/SideMenu.Styles.module.css'
 
 export default function SideMenuClient({ params, children }: SideMenuClientProps) {
   const { open, anchor, DrawerStateChange } = useContext(HeaderContext)
   const sideRef = useRef(null)
   const drawerOpen: DrawerStateChangeProps = { newOpen: true, newAnchor: anchor }
   const drawerClose: DrawerStateChangeProps = { newOpen: false, newAnchor: anchor }
+  const { Header, Body } = styles
 
   return (
     <>
@@ -22,16 +24,16 @@ export default function SideMenuClient({ params, children }: SideMenuClientProps
         onClose={() => DrawerStateChange(drawerClose)}
         onOpen={() => DrawerStateChange(drawerOpen)}
       >
-        <Box>
+        <Box display={'flex'} className={Header} justifyContent={'center'}>
           {params.inbox.map(({ key, value }, index) => {
             return (
-              <Link key={index} href={key}>
-                {value}
-              </Link>
+              <Box key={index} alignSelf={'center'}>
+                <Link href={key}>{value}</Link>
+              </Box>
             )
           })}
         </Box>
-        <Stack>
+        <Stack className={Body}>
           <SideMenuWrapper ref={sideRef}>{children}</SideMenuWrapper>
         </Stack>
       </SwipeableDrawer>

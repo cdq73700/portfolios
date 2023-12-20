@@ -5,13 +5,17 @@ import { Box, Collapse, List, ListItemButton, ListItemIcon, ListItemText } from 
 import { useCallback, useContext, useState } from 'react'
 import HeaderContext from '../Header/Header.Context'
 import { LeftMenuClientProps, ListItemGroupProps, ListItemProps } from '@/types/components/LeftMenu.Type'
+import styles from '@/styles/components/LeftMenu.Styles.module.css'
+
+const { IconStyle } = styles
 
 function ListItem({ params }: ListItemProps) {
   const { inbox, listItemButtonProps } = params
   const { href, icon, value } = inbox
+
   return (
     <ListItemButton data-testid={value} href={href ?? ''} {...listItemButtonProps}>
-      <ListItemIcon>{icon}</ListItemIcon>
+      <ListItemIcon className={IconStyle}>{icon}</ListItemIcon>
       <ListItemText primary={value}></ListItemText>
     </ListItemButton>
   )
@@ -28,7 +32,7 @@ function ListItemGroup({ params }: ListItemGroupProps) {
   return (
     <>
       <ListItemButton onClick={handleClick} data-testid={value}>
-        <ListItemIcon>{icon}</ListItemIcon>
+        <ListItemIcon className={IconStyle}>{icon}</ListItemIcon>
         <ListItemText primary={value}></ListItemText>
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>

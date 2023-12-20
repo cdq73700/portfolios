@@ -12,10 +12,3 @@
   color: rgb(var(--foreground-rgb));
   background-color: rgb(var(--background-side-menu-body-rgb));
 }
-
-.Container {
-  padding: 0.75rem;
-  overflow-y: auto;
-  color: rgb(var(--foreground-rgb));
-  background-color: rgb(var(--background-side-menu-body-rgb));
-}

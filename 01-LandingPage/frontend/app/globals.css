@@ -36,31 +36,3 @@ footer {
   color: rgb(var(--foreground-rgb));
   background-color: rgb(var(--background-end-rgb));
 }
-
-button {
-  color: rgb(var(--button-rgb));
-  border-color: rgba(37, 99, 235, 1);
-}
-
-.Header {
-  width: 100%;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  align-content: center;
-  position: fixed;
-  top: 0%;
-  left: 0%;
-  color: rgb(var(--foreground-rgb));
-  background-color: rgba(var(--background-rgba));
-  backdrop-filter: blur(3px);
-}
-
-.SelectBox * {
-  color: rgb(var(--foreground-rgb));
-  border-color: rgba(37, 99, 235, 1);
-}
-
-.SideMenuList * {
-  color: rgb(var(--foreground-rgb));
-  border-color: rgba(37, 99, 235, 1);
-}

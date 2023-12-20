@@ -1,0 +1,4 @@
+.ButtonStyle * {
+  color: rgb(var(--foreground-rgb));
+  border-color: rgba(37, 99, 235, 1);
+}

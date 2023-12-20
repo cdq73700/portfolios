@@ -5,11 +5,13 @@ import { LanguageSelectBoxClientProps } from '@/types/components/SelectBox/Langu
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import styles from '@/styles/components/SelectBox/Language.Stales.module.css'
 
 export default function LanguageSelectBoxClient({ params, action }: LanguageSelectBoxClientProps) {
   const { languages } = params
   const { i18n } = useTranslation()
   const [lang, setLang] = useState(i18n.language)
+  const { SelectBox } = styles
   const ChangeLanguageCallback = useCallback(
     async (language: Language) => {
       setLang(language)
@@ -18,7 +20,7 @@ export default function LanguageSelectBoxClient({ params, action }: LanguageSele
     [action]
   )
   return (
-    <FormControl fullWidth>
+    <FormControl fullWidth className={SelectBox}>
       <InputLabel id="language-select-label">Language</InputLabel>
       <Select
         labelId="language-select-label"

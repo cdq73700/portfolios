@@ -2,7 +2,7 @@ import 'reflect-metadata'
 import * as cookieParser from 'cookie-parser'
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
-import { AppDataSource } from './data-source'
+import { AppDataSource } from 'src/data-source'
 import { HttpExceptionFilter } from './httpException.filter'
 
 async function bootstrap() {

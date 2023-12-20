@@ -12,4 +12,4 @@ const options: DataSourceOptions & SeederOptions = {
   seeds: ['./src/seeds/*.ts'],
 }
 
-export const AppDataSource = new DataSource(options)
+export const AppDataSourceCli = new DataSource(options)

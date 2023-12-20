@@ -30,7 +30,7 @@ export default function LanguageSelectBoxClient({ params, action }: LanguageSele
         {languages.map(({ value, text }, index) => {
           return (
             <MenuItem key={index} value={value}>
-              {text}
+              <span>{text}</span>
             </MenuItem>
           )
         })}

@@ -51,7 +51,7 @@ describe('Header', () => {
       },
       {
         key: '/profile',
-        value: 'profile',
+        value: 'PROFILE',
       },
     ]
 

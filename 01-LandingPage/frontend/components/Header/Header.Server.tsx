@@ -11,7 +11,7 @@ export default async function HeaderServer() {
     },
     {
       key: '/profile',
-      value: 'profile',
+      value: 'PROFILE',
     },
   ]
   return <HeaderClient params={{ inbox }}></HeaderClient>

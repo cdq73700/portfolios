@@ -57,7 +57,7 @@ describe('LeftMenu', async () => {
       leftMenuServer = await LeftMenuServer()
       rerender(leftMenuServer)
 
-      const profile = screen.queryByTestId('profile')
+      const profile = screen.queryByTestId('PROFILE')
       expect(profile).toBeNull()
     })
   })
@@ -69,13 +69,13 @@ describe('LeftMenu', async () => {
       leftMenuServer = await LeftMenuServer()
       rerender(leftMenuServer)
 
-      const profile = screen.queryByTestId('profile')
+      const profile = screen.queryByTestId('PROFILE')
       expect(profile).toBeNull()
     })
   })
 
   test('LeftMenuServer renders LeftMenuClient', async () => {
-    const profile = screen.getByTestId('profile')
+    const profile = screen.getByTestId('PROFILE')
     expect(profile).toBeDefined()
 
     const inbox = screen.getByTestId('inbox')

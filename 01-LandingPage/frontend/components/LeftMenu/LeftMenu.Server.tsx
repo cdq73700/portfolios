@@ -10,7 +10,7 @@ export default async function LeftMenuServer() {
   const profile: Inbox = {
     href: '/profile',
     icon: <Home></Home>,
-    value: 'profile',
+    value: 'PROFILE',
   }
   const inboxGroup: Inbox = {
     icon: <InboxIcon></InboxIcon>,

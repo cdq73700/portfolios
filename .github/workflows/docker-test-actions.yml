@@ -22,6 +22,9 @@ jobs:
         run: |
           pwd
           ls
+          cd 01-LandingPage/backend
+          pwd
+          ls
       - name: Login to DockerHub
         uses: docker/login-action@v3
         with:

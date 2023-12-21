@@ -4,15 +4,12 @@ run-name: ${{ github.actor }} is learning GitHub Actions
 
 on:
   push:
-    branches: ["main"]
+    branches: ["test/actions"]
 
 jobs:
   build:
     name: Build job
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: action
 
     steps:
       - name: Set up Docker Buildx

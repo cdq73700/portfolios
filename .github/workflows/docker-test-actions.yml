@@ -17,9 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          sparse-checkout: |
-            01-LandingPage/backend
-          path: .
+          path: 01-LandingPage/backend
       - name: folder path
         run: |
           pwd

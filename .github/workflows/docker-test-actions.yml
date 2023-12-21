@@ -35,5 +35,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
+          context: ./01-LandingPage/backend
           push: true
           tags: cdq73700/docker-test-actions:latest

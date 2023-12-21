@@ -20,6 +20,10 @@ jobs:
           sparse-checkout: |
             01-LandingPage/backend
           path: .
+      - name: folder path
+        run: |
+          pwd
+          ls
       - name: Login to DockerHub
         uses: docker/login-action@v3
         with:

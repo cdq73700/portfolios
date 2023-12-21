@@ -2,9 +2,9 @@ FROM node:21.1-slim as builder
 
 WORKDIR /docker/backend
 
-COPY . .
+COPY ./backend .
 
-COPY ../swagger/output ./swagger
+COPY ./swagger/output ./swagger
 
 RUN rm -rf ./database/*.sqlite3
 RUN rm -rf ./dist

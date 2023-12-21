@@ -1,4 +1,4 @@
-name: Landing Page Backend Image
+name: Landing Page Frontend Image
 
 run-name: ${{ github.actor }} is learning GitHub Actions
 
@@ -23,6 +23,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./01-LandingPage/Dockerfile/Production/Backend.Dockerfile
+          file: ./01-LandingPage/Dockerfile/Production/Frontend.Dockerfile
           push: true
-          tags: cdq73700/landing-page-backend:latest
+          tags: cdq73700/landing-page-frontend:latest

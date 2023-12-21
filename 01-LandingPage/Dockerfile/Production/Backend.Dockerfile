@@ -1,15 +1,17 @@
 FROM node:21.1-slim as builder
 
+ENV NODE_ENV production
+
 WORKDIR /docker/backend
 
 COPY ./01-LandingPage/backend .
 
 COPY ./01-LandingPage/swagger/output ./swagger
 
-RUN rm -rf ./database/*.sqlite3
-RUN rm -rf ./dist
+RUN rm -rf database/*.sqlite3
+RUN rm -rf dist
 RUN rm -rf node_modules
-RUN rm -rf ./package-lock.json
+RUN rm -rf package-lock.json
 
 RUN npm i  && \
     npm run build && \

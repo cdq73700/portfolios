@@ -24,7 +24,7 @@ jobs:
         run: |
           pwd
           ls
-          cd 01-LandingPage/backend
+          cd 01-LandingPage
           pwd
           ls
       - name: Login to DockerHub

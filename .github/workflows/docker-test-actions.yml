@@ -36,6 +36,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./01-LandingPage
-          file: backend.Dockerfile
+          file: ./backend.Dockerfile
           push: true
           tags: cdq73700/docker-test-actions:latest

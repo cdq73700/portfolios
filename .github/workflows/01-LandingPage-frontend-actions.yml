@@ -15,6 +15,10 @@ jobs:
     steps:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+      - uses: actions/cache@v3
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
       - name: Checkout
         uses: actions/checkout@v4
       - name: Configure AWS Credentials
@@ -32,3 +36,6 @@ jobs:
           file: ./01-LandingPage/Dockerfile/Production/Frontend.Dockerfile
           push: true
           tags: ${{ steps.login-ecr.outputs.registry }}/${{ secrets.AWS_ECR_REPO_NAME_FRONTEND }}:${{ github.sha }}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+          provenance: false

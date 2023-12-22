@@ -11,7 +11,7 @@ export default defineConfig({
   },
   test: {
     environment: 'jsdom',
-    env: { NEXT_PUBLIC_API_URL: 'http://backend:4000' },
+    env: {},
     include: ['__test__/**/*.Test.tsx'],
   },
 })

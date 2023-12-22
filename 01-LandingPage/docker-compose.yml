@@ -20,6 +20,10 @@ services:
     volumes:
       - ./frontend:/docker/frontend
       - ./swagger/output:/docker/frontend/swagger
+    environment:
+      - ORIGIN=localhost:8000
+      - BACKEND=http://backend
+      - BACKEND_PORT=4000
     tty: true
   backend:
     build:
@@ -30,6 +34,8 @@ services:
     volumes:
       - ./backend:/docker/backend
       - ./swagger/output:/docker/backend/swagger
+    environment:
+      - ORIGIN=localhost:8000
     tty: true
   swagger:
     build:

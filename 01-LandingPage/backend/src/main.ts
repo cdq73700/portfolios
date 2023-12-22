@@ -11,7 +11,7 @@ async function bootstrap() {
   app.use(cookieParser())
   app.enableCors({
     credentials: true,
-    origin: RegExp(process.env.ORIGIN),
+    origin: process.env.ORIGIN,
   })
   app.useGlobalFilters(new HttpExceptionFilter())
   await app.listen(4000)

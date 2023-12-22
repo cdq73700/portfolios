@@ -1,5 +1,7 @@
 FROM node:21.1-slim
 
+ENV NODE_ENV development
+
 WORKDIR /docker/backend
 
 COPY ./backend .

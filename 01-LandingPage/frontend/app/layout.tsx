@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import ReduxProviderClient from './ReduxProvider.Client'
 import { Box } from '@mui/material'
 import BodyServer from './Body.Server'
 import FooterServer from '@/components/Footer/Footer.Server'
@@ -18,20 +17,18 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: RootLayoutProps) {
   return (
-    <ReduxProviderClient>
-      <BodyServer>
-        <HeaderProvider>
-          <HeaderServer></HeaderServer>
-          <SideMenuServer>
-            <LeftMenuServer></LeftMenuServer>
-            <RightMenuServer></RightMenuServer>
-          </SideMenuServer>
-        </HeaderProvider>
-        <Box display={'flex'} minHeight={'100vh'} flexDirection={'column'} justifyContent={'space-between'}>
-          <main>{children}</main>
-        </Box>
-        <FooterServer></FooterServer>
-      </BodyServer>
-    </ReduxProviderClient>
+    <BodyServer>
+      <HeaderProvider>
+        <HeaderServer></HeaderServer>
+        <SideMenuServer>
+          <LeftMenuServer></LeftMenuServer>
+          <RightMenuServer></RightMenuServer>
+        </SideMenuServer>
+      </HeaderProvider>
+      <Box display={'flex'} minHeight={'100vh'} flexDirection={'column'} justifyContent={'space-between'}>
+        <main>{children}</main>
+      </Box>
+      <FooterServer></FooterServer>
+    </BodyServer>
   )
 }

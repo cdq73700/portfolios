@@ -15,7 +15,7 @@ describe('Footer', () => {
     const footerElement = screen.getByTestId('footer')
     expect(footerElement).toBeDefined()
 
-    const footerTextElement = screen.getByText('FOOTER')
+    const footerTextElement = screen.getByText('Copyright (c) 2023 cdq73700')
     expect(footerTextElement).toBeDefined()
   })
 })

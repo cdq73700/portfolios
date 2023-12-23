@@ -3,5 +3,6 @@
 import FooterClient from './Footer.Client'
 
 export default async function FooterServer() {
-  return <FooterClient></FooterClient>
+  const license = 'Copyright (c) 2023 cdq73700'
+  return <FooterClient params={{ license }}></FooterClient>
 }

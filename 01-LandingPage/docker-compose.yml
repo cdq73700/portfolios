@@ -22,7 +22,7 @@ services:
       - ./swagger/output:/docker/frontend/swagger
     environment:
       - ORIGIN=localhost:8000
-      - BACKEND=http://backend
+      - BACKEND_NAME=backend
       - BACKEND_PORT=4000
     tty: true
   backend:

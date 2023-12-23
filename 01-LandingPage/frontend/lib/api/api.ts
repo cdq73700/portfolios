@@ -3,7 +3,7 @@
 import { CookieIssueProps, FetchApiProps, GetJsonProps } from '@/types/lib/api/Api.Type'
 
 async function FetchApi({ path, init }: FetchApiProps) {
-  const res = await fetch(`${process.env.BACKEND}:${process.env.BACKEND_PORT}/api/v1/${path}`, {
+  const res = await fetch(`http://${process.env.BACKEND_NAME}:${process.env.BACKEND_PORT}/api/v1/${path}`, {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',

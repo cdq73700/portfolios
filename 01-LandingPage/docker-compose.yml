@@ -47,6 +47,15 @@ services:
     volumes:
       - ./swagger:/docker/swagger
     tty: true
+  python:
+    build:
+      context: .
+      dockerfile: ./Dockerfile/Python.Dockerfile
+    profiles: [ "dev" ]
+    volumes:
+      - ./python:/docker/python/
+      - ./license:/docker/python/license
+    tty: true
   openssl:
     build:
       context: .

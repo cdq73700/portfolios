@@ -9,12 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { ResponseLicenseSchema } from './responseLicenseSchema';
 
 export interface LicenseSchema { 
-    name?: string;
-    version?: string;
-    license?: string;
-    npmjs?: string;
-    github?: string;
-    body?: string;
+    success?: boolean;
+    data?: Array<ResponseLicenseSchema>;
 }

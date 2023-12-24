@@ -8,6 +8,8 @@ servers:
 tags:
 - name: profile
   description: Operations about profile
+- name: license
+  description: Operations about license
 paths:
   /health:
     get:
@@ -39,19 +41,35 @@ paths:
     get:
       tags:
       - license
-      summary: License
-      description: license
+      summary: Get License
+      description: Returns a list license
       operationId: getLicense
+      parameters:
+      - name: location
+        in: query
+        description: location of license to return
+        schema:
+          type: string
+      - name: environment
+        in: query
+        description: environment of license to return
+        schema:
+          type: string
+      - name: name
+        in: query
+        description: name of license to return
+        schema:
+          type: string
       responses:
         "200":
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseLicenseSchema'
+                $ref: '#/components/schemas/LicenseSchema'
             application/xml:
               schema:
-                $ref: '#/components/schemas/ResponseLicenseSchema'
+                $ref: '#/components/schemas/LicenseSchema'
         "400":
           description: Invalid name supplied
           content:
@@ -172,6 +190,37 @@ components:
       description: database model
       xml:
         name: profile
+    License:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        version:
+          type: string
+        license:
+          type: string
+        install:
+          type: string
+        github:
+          type: string
+        body:
+          type: string
+        location:
+          type: string
+        environment:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      description: database model
+      xml:
+        name: license
     HealthSchema:
       type: object
       properties:
@@ -196,7 +245,7 @@ components:
           $ref: '#/components/schemas/ErrorSchema_error'
       xml:
         name: errorSchema
-    ResponseLicenseSchema:
+    LicenseSchema:
       type: object
       properties:
         success:
@@ -205,52 +254,39 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/LicenseTypeSchema'
+            $ref: '#/components/schemas/ResponseLicenseSchema'
       xml:
         name: LicenseSchema
-    LicenseTypeSchema:
+    ResponseLicenseSchema:
       type: object
       properties:
-        MIT:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnvironmentSchema'
-        Apache2:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnvironmentSchema'
-        BSD3Clause:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnvironmentSchema'
-    EnvironmentSchema:
-      type: object
-      properties:
-        production:
-          type: array
-          items:
-            $ref: '#/components/schemas/LicenseSchema'
-        development:
-          type: array
-          items:
-            $ref: '#/components/schemas/LicenseSchema'
-    LicenseSchema:
-      type: object
-      properties:
+        id:
+          type: string
+          format: uuid
         name:
           type: string
         version:
           type: string
         license:
           type: string
-        npmjs:
+        install:
           type: string
         github:
           type: string
         body:
           type: string
+        location:
+          type: string
+        environment:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
       xml:
-        name: LicenseSchema
+        name: ResponseLicenseSchema
     ProfileSchema:
       type: object
       properties:
@@ -289,7 +325,7 @@ components:
           type: string
           example: 2023/12/13 8:39:04
       xml:
-        name: profile
+        name: ResponseProfileSchema
     ErrorSchema_error:
       type: object
       properties:

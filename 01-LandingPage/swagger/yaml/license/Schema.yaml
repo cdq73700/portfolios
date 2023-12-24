@@ -1,49 +1,36 @@
 components:
   schemas:
-    LicenseSchema:
+    ResponseLicenseSchema:
       type: object
       xml:
-        name: LicenseSchema
+        name: ResponseLicenseSchema
       properties:
+        id:
+          type: string
+          format: uuid
         name:
           type: string
         version:
           type: string
         license:
           type: string
-        npmjs:
+        install:
           type: string
         github:
           type: string
         body:
           type: string
-    EnvironmentSchema:
-      type: object
-      properties:
-        production:
-          type: array
-          items:
-            $ref: '#/components/schemas/LicenseSchema'
-        development:
-          type: array
-          items:
-            $ref: '#/components/schemas/LicenseSchema'
-    LicenseTypeSchema:
-      type: object
-      properties:
-        MIT:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnvironmentSchema'
-        Apache2:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnvironmentSchema'
-        BSD3Clause:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnvironmentSchema'
-    ResponseLicenseSchema:
+        location:
+          type: string
+        environment:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    LicenseSchema:
       type: object
       xml:
         name: LicenseSchema
@@ -54,4 +41,4 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/LicenseTypeSchema'
+            $ref: '#/components/schemas/ResponseLicenseSchema'

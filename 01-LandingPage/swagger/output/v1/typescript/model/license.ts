@@ -10,7 +10,10 @@
  * Do not edit the class manually.
  */
 
-export interface ResponseLicenseSchema { 
+/**
+ * database model
+ */
+export interface License { 
     id?: string;
     name?: string;
     version?: string;

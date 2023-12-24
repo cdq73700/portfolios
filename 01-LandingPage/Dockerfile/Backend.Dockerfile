@@ -8,4 +8,6 @@ COPY ./backend .
 
 COPY ./swagger/output ./swagger
 
+COPY ./license/json ./license
+
 EXPOSE 4000

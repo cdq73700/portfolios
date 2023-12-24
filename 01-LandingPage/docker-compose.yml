@@ -34,6 +34,7 @@ services:
     volumes:
       - ./backend:/docker/backend
       - ./swagger/output:/docker/backend/swagger
+      - ./license/json:/docker/backend/license
     environment:
       - ORIGIN=localhost:8000
     tty: true

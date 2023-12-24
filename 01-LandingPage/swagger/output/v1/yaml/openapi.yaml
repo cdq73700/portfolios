@@ -35,6 +35,32 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ErrorSchema'
+  /license:
+    get:
+      tags:
+      - license
+      summary: License
+      description: license
+      operationId: getLicense
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseLicenseSchema'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ResponseLicenseSchema'
+        "400":
+          description: Invalid name supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorSchema'
   /profile/{language}:
     get:
       tags:
@@ -170,6 +196,61 @@ components:
           $ref: '#/components/schemas/ErrorSchema_error'
       xml:
         name: errorSchema
+    ResponseLicenseSchema:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LicenseTypeSchema'
+      xml:
+        name: LicenseSchema
+    LicenseTypeSchema:
+      type: object
+      properties:
+        MIT:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvironmentSchema'
+        Apache2:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvironmentSchema'
+        BSD3Clause:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvironmentSchema'
+    EnvironmentSchema:
+      type: object
+      properties:
+        production:
+          type: array
+          items:
+            $ref: '#/components/schemas/LicenseSchema'
+        development:
+          type: array
+          items:
+            $ref: '#/components/schemas/LicenseSchema'
+    LicenseSchema:
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+        license:
+          type: string
+        npmjs:
+          type: string
+        github:
+          type: string
+        body:
+          type: string
+      xml:
+        name: LicenseSchema
     ProfileSchema:
       type: object
       properties:

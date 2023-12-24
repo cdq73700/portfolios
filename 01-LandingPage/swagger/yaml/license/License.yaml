@@ -1,0 +1,25 @@
+get:
+  tags:
+    - license
+  summary: License
+  description: license
+  operationId: getLicense
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: 'Schema.yaml#/components/schemas/ResponseLicenseSchema'
+        application/xml:
+          schema:
+            $ref: 'Schema.yaml#/components/schemas/ResponseLicenseSchema'
+    "400":
+      description: Invalid name supplied
+      content:
+        application/json:
+          schema:
+            $ref: '../error/Schema.yaml#/components/schemas/ErrorSchema'
+        application/xml:
+          schema:
+            $ref: '../error/Schema.yaml#/components/schemas/ErrorSchema'

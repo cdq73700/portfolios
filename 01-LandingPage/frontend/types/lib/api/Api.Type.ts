@@ -4,6 +4,7 @@ import { Language, Theme } from '@/types/Application.Type'
  * api
  */
 export type FetchApiProps = {
+  version: string
   path: string
   init: RequestInit
 }

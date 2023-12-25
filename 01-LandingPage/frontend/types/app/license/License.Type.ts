@@ -1,35 +1,17 @@
+import { ErrorSchemaError } from '@/swagger/v1/typescript/model/errorSchemaError'
+import { ResponseLicenseSchema } from '@/swagger/v1/typescript/model/responseLicenseSchema'
+
 /**
  * LicenseServer
  */
-export type License = {
-  name: string
-  version: string
-  license: string
-  npmjs: string
-  github: string
-  body: string
-}
-export type LicenseList = {
-  all: Array<License>
-  production: Array<License>
-  development: Array<License>
-}
-export type Server = {
-  all: LicenseList
-  front: LicenseList
-  back: LicenseList
-}
-export type Environment = {
-  production: Array<License>
-  development: Array<License>
-}
-export type LicenseType = {
-  MIT: Environment
-  Apache2: Environment
-  BSD3Clause: Environment
-}
-export type LicenseResponse = {
-  License: LicenseType
+
+/**
+ * LicenseAction
+ */
+export type LicenseActionProps = {
+  location: string | undefined
+  environment: string | undefined
+  name: string | undefined
 }
 
 /**
@@ -38,6 +20,13 @@ export type LicenseResponse = {
 
 export type LicenseClientProps = {
   params: {
-    license: Server
+    success: boolean
+    data: Array<ResponseLicenseSchema>
+    error: ErrorSchemaError
   }
+  action: ({ location, environment, name }: LicenseActionProps) => Promise<{
+    success: boolean
+    data: Array<ResponseLicenseSchema>
+    error: ErrorSchemaError
+  }>
 }

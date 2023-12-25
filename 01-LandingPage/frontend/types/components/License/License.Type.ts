@@ -1,21 +1,4 @@
-import { LicenseList, LicenseType } from '@/types/app/license/License.Type'
-
-/**
- * LicenseContext
- */
-export type LicenseContextProps = {
-  serverTabIndex: number
-  environmentTabIndex: number
-  SetServerTabIndex: (index: number) => void
-  SetEnvironmentTabIndex: (index: number) => void
-}
-
-/**
- * LicenseProvider
- */
-export type LicenseProviderProps = {
-  children: React.ReactNode
-}
+import { ResponseLicenseSchema } from '@/swagger/v1/typescript/model/responseLicenseSchema'
 
 /**
  * LicenseTabClient
@@ -23,9 +6,8 @@ export type LicenseProviderProps = {
 export type LicenseTabClientProps = {
   params: {
     inbox: Array<string>
-    index: number
-    ChangeIndex: (index: number) => void
   }
+  action: (location: string | undefined) => {}
   children: React.ReactNode
 }
 
@@ -34,21 +16,17 @@ export type LicenseTabClientProps = {
  */
 export type LicenseListClientProps = {
   params: {
-    license: LicenseList
+    license: Array<ResponseLicenseSchema>
   }
-  children: React.ReactNode
+  action: (name: string | undefined) => {}
 }
-
-/**
- * LicenseContentServer
- */
 
 /**
  * LicenseContentClient
  */
 export type LicenseContentClientProps = {
   params: {
-    license: LicenseList
+    license: Array<ResponseLicenseSchema>
   }
 }
 
@@ -57,11 +35,6 @@ export type LicenseContentClientProps = {
  */
 export type ContentProps = {
   params: {
-    name: string
-    version: string
-    license: string
-    npmjs: string
-    github: string
-    body: string
+    license: ResponseLicenseSchema
   }
 }

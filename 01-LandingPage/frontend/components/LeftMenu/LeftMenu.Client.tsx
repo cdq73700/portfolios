@@ -12,9 +12,17 @@ const { IconStyle } = styles
 function ListItem({ params }: ListItemProps) {
   const { inbox, listItemButtonProps } = params
   const { href, icon, value } = inbox
+  const context = useContext(HeaderContext)
 
   return (
-    <ListItemButton data-testid={value} href={href ?? ''} {...listItemButtonProps}>
+    <ListItemButton
+      data-testid={value}
+      href={href ?? ''}
+      onClick={() => {
+        context.DrawerStateChange({ newAnchor: context.anchor, newOpen: false })
+      }}
+      {...listItemButtonProps}
+    >
       <ListItemIcon className={IconStyle}>{icon}</ListItemIcon>
       <ListItemText primary={value}></ListItemText>
     </ListItemButton>

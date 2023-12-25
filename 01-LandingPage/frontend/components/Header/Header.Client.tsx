@@ -34,7 +34,7 @@ export default function HeaderClient({ params }: HeaderClientProps) {
                 {inbox.map(({ key, value }, index) => {
                   return (
                     <Grid key={index}>
-                      <Link href={key}>
+                      <Link href={key} scroll={false}>
                         <Typography variant="h6">{value}</Typography>
                       </Link>
                     </Grid>

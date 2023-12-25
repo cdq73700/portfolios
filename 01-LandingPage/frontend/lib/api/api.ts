@@ -2,17 +2,6 @@
 
 import { CookieIssueProps, FetchApiProps, GetJsonProps } from '@/types/lib/api/Api.Type'
 
-async function PublicFetchApi({ path }: { path: string }) {
-  const res = await fetch(`http://localhost:3000/${path}`, {
-    method: 'GET',
-    cache: 'no-cache',
-  })
-
-  const text = await GetText({ res })
-
-  return text
-}
-
 async function FetchApi({ version, path, init }: FetchApiProps) {
   const res = await fetch(`http://${process.env.BACKEND_NAME}:${process.env.BACKEND_PORT}/api/${version}/${path}`, {
     headers: {
@@ -32,11 +21,6 @@ async function GetJson({ res }: GetJsonProps) {
   return json
 }
 
-async function GetText({ res }: GetJsonProps) {
-  const text = await res.text()
-  return text
-}
-
 async function GetProfile(lang: string) {
   const params: FetchApiProps = {
     version: 'v1',
@@ -45,6 +29,21 @@ async function GetProfile(lang: string) {
       method: 'GET',
       cache: 'no-cache',
       next: { tags: ['profile'] },
+    },
+  }
+  const res = await FetchApi(params)
+  const json = await GetJson({ res })
+  return json
+}
+
+async function GetLicense(query: string | undefined) {
+  const params: FetchApiProps = {
+    version: 'v1',
+    path: query ? `license?${query}` : 'license',
+    init: {
+      method: 'GET',
+      cache: 'no-store',
+      next: { tags: ['license'] },
     },
   }
   const res = await FetchApi(params)
@@ -67,18 +66,4 @@ async function CookieIssue({ name, parameter }: CookieIssueProps) {
   return res
 }
 
-async function GetBackendLicense() {
-  const params: FetchApiProps = {
-    version: 'public',
-    path: 'license.yaml',
-    init: {
-      method: 'GET',
-      cache: 'no-cache',
-    },
-  }
-  const res = await FetchApi(params)
-  const test = await GetText({ res })
-  return test
-}
-
-export { CookieIssue, GetProfile, GetBackendLicense, PublicFetchApi }
+export { CookieIssue, GetProfile, GetLicense }

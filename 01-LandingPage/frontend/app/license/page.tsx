@@ -1,4 +1,3 @@
-import LicenseProvider from '@/components/License/License.Provider'
 import LicenseServer from './License.Server'
 import { Suspense } from 'react'
 import Loading from './loading'
@@ -9,9 +8,7 @@ export default function Page() {
   return (
     <Suspense fallback={<Loading></Loading>}>
       <ErrorBoundary FallbackComponent={Error}>
-        <LicenseProvider>
-          <LicenseServer></LicenseServer>
-        </LicenseProvider>
+        <LicenseServer></LicenseServer>
       </ErrorBoundary>
     </Suspense>
   )

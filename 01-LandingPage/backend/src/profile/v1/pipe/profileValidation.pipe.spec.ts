@@ -1,6 +1,6 @@
 import { GetUserByIdValidationPipe } from './profileValidation.pipe'
 
-describe('cookieValidation', () => {
+describe('profileValidation', () => {
   beforeEach(() => {})
 
   describe('GetUserByIdValidationPipe', () => {

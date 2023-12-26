@@ -34,6 +34,7 @@ services:
     volumes:
       - ./backend:/docker/backend
       - ./swagger/output:/docker/backend/swagger
+      - ./license/json:/docker/backend/license
     environment:
       - ORIGIN=localhost:8000
     tty: true
@@ -46,6 +47,15 @@ services:
       - 30001:3001
     volumes:
       - ./swagger:/docker/swagger
+    tty: true
+  python:
+    build:
+      context: .
+      dockerfile: ./Dockerfile/Python.Dockerfile
+    profiles: [ "dev" ]
+    volumes:
+      - ./python:/docker/python/
+      - ./license:/docker/python/license
     tty: true
   openssl:
     build:

@@ -1,0 +1,41 @@
+get:
+  tags:
+    - license
+  summary: Get License
+  description: Returns a list license
+  operationId: getLicense
+  parameters:
+    - in: query
+      name: location
+      description: location of license to return
+      schema:
+        type: string
+    - in: query
+      name: environment
+      description: environment of license to return
+      schema:
+        type: string
+    - in: query
+      name: name
+      description: name of license to return
+      schema:
+        type: string
+  responses:
+    "200":
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: 'Schema.yaml#/components/schemas/LicenseSchema'
+        application/xml:
+          schema:
+            $ref: 'Schema.yaml#/components/schemas/LicenseSchema'
+    "400":
+      description: Invalid name supplied
+      content:
+        application/json:
+          schema:
+            $ref: '../error/Schema.yaml#/components/schemas/ErrorSchema'
+        application/xml:
+          schema:
+            $ref: '../error/Schema.yaml#/components/schemas/ErrorSchema'

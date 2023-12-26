@@ -8,9 +8,13 @@ servers:
 tags:
   - name: profile
     description: Operations about profile
+  - name: license
+    description: Operations about license
 paths:
   /health:
     $ref: /docker/swagger/yaml/health/Health.yaml
+  /license:
+    $ref: /docker/swagger/yaml/license/License.yaml
   /profile/{language}:
     $ref: /docker/swagger/yaml/profile/Profile.yaml
   /cookie/language/{language}:
@@ -44,6 +48,37 @@ components:
           type: string
         isActive:
           type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    License:
+      description: database model
+      type: object
+      xml:
+        name: license
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        version:
+          type: string
+        license:
+          type: string
+        install:
+          type: string
+        github:
+          type: string
+        body:
+          type: string
+        location:
+          type: string
+        environment:
+          type: string
         createdAt:
           type: string
           format: date-time

@@ -8,6 +8,8 @@ COPY ./01-LandingPage/backend .
 
 COPY ./01-LandingPage/swagger/output ./swagger
 
+COPY ./01-LandingPage/license/json ./license
+
 RUN rm -rf database/*.sqlite3
 RUN rm -rf dist
 RUN rm -rf node_modules

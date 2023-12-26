@@ -1,0 +1,15 @@
+{
+  "[python]": {
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.wordBasedSuggestions": "off"
+  },
+  "black-formatter.args": [
+    "--line-length=150"
+  ],
+  "python.analysis.extraPaths": [
+    "/root/.local/share/virtualenvs/python-t63fXO1C/lib/python3.12/site-packages"
+  ]
+}

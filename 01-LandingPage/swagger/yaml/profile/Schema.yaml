@@ -4,7 +4,7 @@ components:
       type: object
       required: [language]
       xml:
-        name: profile
+        name: ResponseProfileSchema
       properties:
         id:
           type: string

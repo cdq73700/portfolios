@@ -1,0 +1,44 @@
+components:
+  schemas:
+    ResponseLicenseSchema:
+      type: object
+      xml:
+        name: ResponseLicenseSchema
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        version:
+          type: string
+        license:
+          type: string
+        install:
+          type: string
+        github:
+          type: string
+        body:
+          type: string
+        location:
+          type: string
+        environment:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    LicenseSchema:
+      type: object
+      xml:
+        name: LicenseSchema
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseLicenseSchema'

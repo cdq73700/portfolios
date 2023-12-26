@@ -1,12 +1,13 @@
 {
   "extends": "./tsconfig.json",
   "exclude": [
-    "node_modules",
-    "test",
     "dist",
-    "**/*spec.ts",
+    "license",
+    "node_modules",
     "src/migrations",
     "src/seeds",
-    "./data-source-cli.ts"
+    "test",
+    "./data-source-cli.ts",
+    "**/*spec.ts"
   ]
 }

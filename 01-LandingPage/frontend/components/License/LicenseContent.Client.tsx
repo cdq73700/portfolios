@@ -9,7 +9,9 @@ function Content({ params }: ContentProps) {
   return (
     <>
       <Stack p={3} gap={2} id={name}>
-        <Typography variant="h3">{name}</Typography>
+        <Typography variant="h3" data-testid={name}>
+          {name}
+        </Typography>
         <Stack display={'flex'} flexDirection={'row'} alignItems={'center'} gap={2}>
           <Typography variant="h4" width={'180px'}>
             VERSION

@@ -13,7 +13,7 @@ export default function LicenseListClient({ params, action }: LicenseListClientP
           {license.map(({ name }, index) => {
             return (
               <ListItem key={index}>
-                <ListItemButton onClick={() => action(name)}>
+                <ListItemButton onClick={() => action(name)} data-testid={name}>
                   <ListItemText primary={name}></ListItemText>
                 </ListItemButton>
               </ListItem>

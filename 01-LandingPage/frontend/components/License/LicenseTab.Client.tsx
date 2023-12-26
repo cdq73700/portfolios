@@ -20,7 +20,7 @@ export default function LicenseTabClient({ params, action, children }: LicenseTa
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={index} onChange={handleChange}>
           {inbox.map((value, index) => {
-            return <Tab key={index} label={value} sx={{ color: 'initial' }} />
+            return <Tab key={index} label={value} sx={{ color: 'initial' }} data-testid={value} />
           })}
         </Tabs>
       </Box>

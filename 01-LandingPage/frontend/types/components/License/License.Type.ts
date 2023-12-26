@@ -7,7 +7,7 @@ export type LicenseTabClientProps = {
   params: {
     inbox: Array<string>
   }
-  action: (location: string | undefined) => {}
+  action: (location: string | undefined) => void
   children: React.ReactNode
 }
 
@@ -18,7 +18,7 @@ export type LicenseListClientProps = {
   params: {
     license: Array<ResponseLicenseSchema>
   }
-  action: (name: string | undefined) => {}
+  action: (name: string | undefined) => void
 }
 
 /**

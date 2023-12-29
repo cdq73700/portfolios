@@ -13,7 +13,7 @@ docker compose up openssl -d --build
 ### 1.2 OpenSSLコンテナ内で証明書の発行スクリプトを実行
 
 ```bash
-docker compose run --rm openssl ./setup-nginx.sh
+docker compose run --rm openssl bash -c './setup-nginx.sh'
 ```
 
 このスクリプトは、Nginxで使用するローカルSSL証明書を生成し、必要なファイルを作成します。
@@ -41,7 +41,7 @@ docker compose up -d --build
 Backendに必要なSQLiteデータベースを作成し、マイグレーションとシードデータの適用を行います。
 
 ```bash
-docker compose run --rm backend sh -c ' \
+docker compose run --rm backend bash -c ' \
     npm run typeorm migration:run -- -d ./data-source-cli.ts && \
     npm run seed:run -- -d ./data-source-cli.ts'
 ```
@@ -73,7 +73,7 @@ docker compose exec frontend bash -c 'npm run dev'
 
 # 6. 画面の表示
 
-ランディングページの表示方法は下記のURLをブラウザーで表示する。
+ランディングページの表示方法は下記のURLをブラウザで表示する。
 
 https://localhost:8000
 

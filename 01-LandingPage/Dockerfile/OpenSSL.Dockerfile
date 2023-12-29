@@ -5,9 +5,9 @@ RUN apt-get update && \
     openssl && \
     rm -rf /var/lib/apt/lists/*
 
-WORKDIR /docker
+WORKDIR /docker/openssl
+
+RUN mkdir certs
 
 COPY ./openssl/setup*.sh .
 RUN chmod +x setup*.sh
-
-WORKDIR /docker/certs

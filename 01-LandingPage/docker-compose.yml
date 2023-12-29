@@ -63,4 +63,4 @@ services:
       dockerfile: ./Dockerfile/OpenSSL.Dockerfile
     profiles: [ "openssl" ]
     volumes:
-      - ./openssl/certs:/docker/certs
+      - ./openssl/certs:/docker/openssl/certs

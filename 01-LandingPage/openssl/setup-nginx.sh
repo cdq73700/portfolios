@@ -9,3 +9,6 @@ openssl req -new -key server.key -out server.csr -subj "/CN=localhost"
 openssl x509 -req -in server.csr -CA root.crt -CAkey root.key -CAcreateserial -out server.crt
 
 chmod 400 root.crt server.key
+
+mv root.* ./certs
+mv server.* ./certs

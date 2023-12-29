@@ -10,6 +10,3 @@ COPY ./license ./license
 RUN pip3 install -r requirements.txt
 
 RUN pipenv install
-
-# 実行コマンド
-# RUN pipenv run start
